@@ -1244,6 +1244,8 @@ Properties are digital touchpoints associated with brands:
 | `region` | string | No | ISO country code or `global` |
 | `primary` | boolean | No | Is this the primary property? |
 | `relationship` | enum | No | How this brand relates to the property: `owned` (default), `direct`, `delegated`, `ad_network`. Direct, delegated, and network values match `delegation_type` in adagents.json for bilateral verification; `owned` is a brand.json-only ownership claim. See [ad networks](/docs/sponsored-intelligence/networks). |
+| `identifier_type` | enum | No | Identifier type of `identifier`, from the AdCP identifier-types enum. Publishers SHOULD set it when `type` is `social_profile`, because account IDs from different platforms can collide. Experimental (`media_buy.social_profiles`). |
+| `owner_authorizations` | array | No | Operator-attested evidence that the account owner connected an operator to a `social_profile` account. See [platform OAuth evidence](/docs/media-buy/product-discovery/collections-and-installments#platform-oauth-evidence-experimental). Experimental (`media_buy.social_profiles`). |
 
 ### Property types
 
@@ -1259,6 +1261,7 @@ Matches AdCP property-type enum:
 - `linear_tv`
 - `streaming_audio`
 - `ai_assistant`
+- `social_profile` (experimental, `media_buy.social_profiles`): a creator's or publisher's account on a social or video platform, identified by the platform's account ID
 
 ### Property relationships
 

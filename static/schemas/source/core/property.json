@@ -59,6 +59,16 @@
     "publisher_domain": {
       "type": "string",
       "description": "Domain where adagents.json should be checked for authorization validation. Optional in adagents.json (file location implies domain)."
+    },
+    "owner_authorizations": {
+      "type": "array",
+      "description": "Experimental (media_buy.social_profiles). Operator-attested evidence that the account owner connected an operator to this property's platform account. Meaningful for property_type social_profile, whose account cannot host adagents.json. Each record's account MUST equal one of this property's identifiers. Not a sales mandate on its own; see core/owner-authorization.json.",
+      "minItems": 1,
+      "items": {
+        "$ref": "/schemas/core/owner-authorization.json"
+      },
+      "x-status": "experimental",
+      "x-added-in": "3.3.0"
     }
   },
   "required": [

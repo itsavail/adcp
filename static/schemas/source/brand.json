@@ -409,6 +409,22 @@
           "enum": ["owned", "direct", "delegated", "ad_network"],
           "default": "owned",
           "description": "How this brand relates to the property. 'owned': the brand owns and operates this property (default) and has no adagents.json delegation_type counterpart. 'direct': the brand is the direct sales path for this property, even if a third party operates the software (e.g., a publisher's in-house ad team using a vendor's tech). 'delegated': the brand manages monetization for this property — they are in charge of ad sales (e.g., Mediavine managing a food blog). 'ad_network': the brand sells this property's inventory as part of a network or exchange — they are a path to the inventory, not the path (e.g., PubMatic as an SSP). For non-owned properties, the publisher confirms the relationship by setting the matching delegation_type on the agent's authorization in their adagents.json."
+        },
+        "identifier_type": {
+          "$ref": "/schemas/enums/identifier-types.json",
+          "description": "Experimental (media_buy.social_profiles). Identifier type of identifier, for example youtube_channel_id. Publishers SHOULD set it when type is social_profile, because account IDs from different platforms can collide; consumers that cannot tell the platform from identifier_type or an owner_authorizations account treat the property as unresolved. Optional for other types, where type and store already imply it.",
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
+        },
+        "owner_authorizations": {
+          "type": "array",
+          "description": "Experimental (media_buy.social_profiles). Operator-attested evidence that the account owner connected an operator to this social_profile property. A platform account cannot publish adagents.json, so it cannot set the matching delegation_type that confirms a non-owned relationship; these records are the weaker substitute, stated by the operator. Each record's account MUST equal {type: identifier_type, value: identifier}. See core/owner-authorization.json.",
+          "minItems": 1,
+          "items": {
+            "$ref": "/schemas/core/owner-authorization.json"
+          },
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
         }
       },
       "required": ["type", "identifier"],

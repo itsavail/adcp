@@ -114,6 +114,16 @@
         "$ref": "/schemas/core/collection-distribution.json"
       }
     },
+    "owner_authorizations": {
+      "type": "array",
+      "description": "Experimental (media_buy.social_profiles). Operator-attested evidence that the owner of a platform account in distribution connected an operator to it, one record per account and operator. Each record's account MUST equal an identifier on the distribution entry whose publisher_domain equals the record's platform_domain. Not sales authorization: adagents.json remains the authorization source. Excluded from publisher_collection definition pins, so a refreshed verified_at is not drift.",
+      "minItems": 1,
+      "items": {
+        "$ref": "/schemas/core/owner-authorization.json"
+      },
+      "x-status": "experimental",
+      "x-added-in": "3.3.0"
+    },
     "deadline_policy": {
       "$ref": "/schemas/core/deadline-policy.json",
       "description": "Default deadline rules for installments of this collection. Agents compute absolute deadlines from each installment's scheduled_at and these lead times. Installments with explicit deadlines override this policy. Only meaningful when installments carry scheduled_at; a continuously programmed channel collection without enumerated installments has no deadlines to derive."

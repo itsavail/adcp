@@ -14,7 +14,8 @@
     "radio",
     "linear_tv",
     "streaming_audio",
-    "ai_assistant"
+    "ai_assistant",
+    "social_profile"
   ],
   "enumDescriptions": {
     "website": "Web properties accessible via browser, identified by domain",
@@ -26,6 +27,7 @@
     "radio": "Radio station properties, identified by station ID or facility ID",
     "linear_tv": "Linear television stations and networks, identified by station ID or facility ID",
     "streaming_audio": "Digital audio streaming properties, identified by platform-specific IDs",
-    "ai_assistant": "AI-powered conversational interfaces including chatbots, AI assistants, and conversational AI platforms, identified by platform-specific IDs"
+    "ai_assistant": "AI-powered conversational interfaces including chatbots, AI assistants, and conversational AI platforms, identified by platform-specific IDs",
+    "social_profile": "A creator's or publisher's account on a social or video platform (a channel, profile, or page), identified by the platform's account ID. The account cannot host adagents.json, so the platform's own domain is not the authorization namespace for it; see owner_authorizations for operator-held evidence that the account owner connected the selling operator. Experimental (media_buy.social_profiles)."
   }
 }

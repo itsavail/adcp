@@ -413,11 +413,11 @@ test('response collections descriptions carry the opt-in and the closed freshnes
   for (const file of ['get-products', 'list-products', 'request-proposals', 'refine-proposals']) {
     const desc = read(`media-buy/${file}-response.json`).properties.collections.description;
     assert.match(desc, /unless the request set include_collections to true/, file);
-    assert.match(desc, /only on images, sample_content, url, description, season, cadence and distribution\[\]\.followers/, file);
+    assert.match(desc, /only on images, sample_content, url, description, season, cadence, distribution\[\]\.followers and owner_authorizations/, file);
     assert.match(desc, /appears more than once, that collection is unresolvable/, file);
   }
   const item = read('core/response-collection.json').description;
-  assert.match(item, /only on images, sample_content, url, description, season, cadence and distribution\[\]\.followers/);
+  assert.match(item, /only on images, sample_content, url, description, season, cadence, distribution\[\]\.followers and owner_authorizations/);
   assert.doesNotMatch(item, /such as images, sample_content, status and talent/);
   assert.match(item, /unverified display data/);
 });
@@ -485,7 +485,8 @@ test('collection card fields are excluded from publisher_collection definition p
   assert.ok(vector, 'an image-only change has an equivalence vector');
   assert.equal(vector.expected.same_content_digest, true);
   const spec = fs.readFileSync(path.join(__dirname, '../docs/media-buy/specification.mdx'), 'utf8');
-  assert.ok(spec.includes('| `publisher_collection` | `description`, `ext`, `images`, `name`, `publisher_domain`, `related_collections`, `sample_content`, `season`, `talent`, `url` |'));
+  const row = `| \`publisher_collection\` | ${exclude.map((key) => `\`${key}\``).join(', ')} |`;
+  assert.ok(spec.includes(row), `specification table matches the vectors: ${row}`);
 });
 
 test('include_collections is part of the feed version scope', () => {

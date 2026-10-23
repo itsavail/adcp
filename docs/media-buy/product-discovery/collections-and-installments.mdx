@@ -133,7 +133,7 @@ Each fact has one home:
 | Fact | Served by |
 |---|---|
 | Which agent may sell which collection | The publisher's `adagents.json` (static, authorization) |
-| Card display and freshness facts: `images`, `sample_content`, `url`, `description`, `season`, `cadence`, `distribution[].followers` | The selling agent, in the response `collections` array, [`list_collections`](/docs/media-buy/task-reference/list_collections) and `collection_card.*` webhooks (fallback: `adagents.json`) |
+| Card display and freshness facts: `images`, `sample_content`, `url`, `description`, `season`, `cadence`, `distribution[].followers`, and the operator's `owner_authorizations` (experimental, `media_buy.social_profiles`) | The selling agent, in the response `collections` array, [`list_collections`](/docs/media-buy/task-reference/list_collections) and `collection_card.*` webhooks (fallback: `adagents.json`) |
 | Every other collection fact, such as `status`, `talent`, `content_rating`, `genre`, `kind`, `special`, and `distribution` channels | The publisher's `adagents.json` |
 | The person: name, picture, bio, likeness and endorsement rights | The talent's brand or rights agent, reached through `talent[].brand_ref` |
 
@@ -294,6 +294,60 @@ For hosts, the collection-narrowed entry is not a new favor to a competitor's
 sales path: it is the machine-readable form of the carriage contract's
 existing owner-sales clause, and the upgrade path from an
 `inventorypartnerdomain` line they typically already publish.
+
+### Platform OAuth evidence (experimental)
+
+Some accounts can never reach state 1 or 2. A creator's channel or profile on a
+social or video platform has no domain on which to publish `adagents.json`, and
+the platform does not name the creator's sales agents in its own files. An
+operator that sells for the account owner can still state what it holds: an
+OAuth grant the owner approved on the platform. It states the grant as an
+`owner_authorizations` record (`core/owner-authorization.json`) on the
+`social_profile` property it declares in `brand.json` or `adagents.json`, and
+on the collection it returns in responses:
+
+```json
+{
+  "type": "social_profile",
+  "identifier": "UCexample123456",
+  "identifier_type": "youtube_channel_id",
+  "relationship": "delegated",
+  "owner_authorizations": [
+    {
+      "method": "platform_oauth",
+      "platform_domain": "videoplatform.example",
+      "account": { "type": "youtube_channel_id", "value": "UCexample123456" },
+      "verified_by": { "domain": "creator-network.example" },
+      "verified_at": "2026-10-20T14:05:00Z",
+      "granted_scopes": ["analytics.readonly"]
+    }
+  ]
+}
+```
+
+The record is operator-attested. A buyer cannot check the grant, and a grant
+often covers only reading analytics. The record shows that the account owner
+connected the operator. The sales mandate still comes from the `brand.json` and
+`adagents.json` chain. Buyers SHOULD rank it:
+
+- above owner-attested carriage (state 3), because the owner approved the grant
+  on the platform itself;
+- below verified owner-sold, host-delegated, and an `adagents.json` the owner
+  publishes on a domain the owner controls.
+
+A buyer that accepts the record SHOULD check that `verified_by` names the
+selling agent's operator, that `account` equals an identifier on the property or
+on the distribution entry for `platform_domain`, and that `verified_at` meets its
+freshness policy. Buyers MAY accept platform OAuth evidence under their own
+policy, as they MAY accept host-delegated. The registry supply-path evaluator
+does not read `owner_authorizations`, and the semantics below are unchanged.
+
+An operator MUST remove a record when the owner revokes the grant or the grant
+stops resolving to the account. Sellers that return `social_profile` properties
+or `owner_authorizations` records list `media_buy.social_profiles` in
+`experimental_features`. `brand.json` and `adagents.json` publishers cannot
+declare experimental features, so consumers treat these fields as experimental
+wherever they appear.
 
 ### Canonical verification semantics
 
@@ -807,7 +861,7 @@ Products reference collections via `collections` selectors — the same pattern 
 - **Scope.** Entries cover collections referenced by a returned product's `collections` selectors, keyed by `(publisher_domain, collection_id)`. Sellers MUST NOT include a collection that no returned product references. On a paginated read, that means products on the current page. The array appears only alongside `products`, never on a rejected or `unchanged` response, and a `fields` projection that omits product `collections` omits it too.
 - **Completeness.** When `include_collections` is `true`, sellers SHOULD include every referenced collection. Omission is allowed, for example for a very large bundle. Buyers detect omissions by comparing the products' selectors with the array, and resolve a missing collection from the publisher's `adagents.json`, as before.
 - **Duplicates and strays.** If a key appears more than once, that collection is unresolvable from the response, and buyers fall back to `adagents.json` for it. Buyers ignore entries that no returned product references.
-- **Authority.** The response entry is a convenience copy from the selling agent. The publisher's `adagents.json` remains the root of authorization: which agent may sell which collection is answered only by its `authorized_agents` entries, including [collection-scoped selectors](/docs/governance/property/adagents#collections). A response copy MUST NOT be treated as authorization evidence. When the copy and `adagents.json` disagree, the copy wins only on `images`, `sample_content`, `url`, `description`, `season`, `cadence` and `distribution[].followers`. Every other field, including `status`, `talent`, `content_rating`, `genre`, `kind`, `special` and the rest of `distribution`, stays anchored to `adagents.json`. A copy that omits one of the closed-list fields leaves the declared value. A copy's `followers` apply to the declared `distribution` entry with the same `publisher_domain` (or, when several declared entries share it, the one with the same identifiers); copy entries the publisher does not declare are ignored. `season` and `cadence` are on the list because they go stale between updates to the publisher's file and drive neither suitability nor pricing. Facts buyers use for suitability or pricing, such as `content_rating`, `genre` and `production_quality`, stay with the publisher so that a reseller cannot restate them. [Definition pins](/docs/media-buy/specification#definition-pins) hash the `adagents.json` declaration, never the response copy.
+- **Authority.** The response entry is a convenience copy from the selling agent. The publisher's `adagents.json` remains the root of authorization: which agent may sell which collection is answered only by its `authorized_agents` entries, including [collection-scoped selectors](/docs/governance/property/adagents#collections). A response copy MUST NOT be treated as authorization evidence. When the copy and `adagents.json` disagree, the copy wins only on `images`, `sample_content`, `url`, `description`, `season`, `cadence`, `distribution[].followers` and `owner_authorizations` (experimental, `media_buy.social_profiles`). Every other field, including `status`, `talent`, `content_rating`, `genre`, `kind`, `special` and the rest of `distribution`, stays anchored to `adagents.json`. A copy that omits one of the closed-list fields leaves the declared value. A copy's `followers` apply to the declared `distribution` entry with the same `publisher_domain` (or, when several declared entries share it, the one with the same identifiers); copy entries the publisher does not declare are ignored. `season` and `cadence` are on the list because they go stale between updates to the publisher's file and drive neither suitability nor pricing. Facts buyers use for suitability or pricing, such as `content_rating`, `genre` and `production_quality`, stay with the publisher so that a reseller cannot restate them. [Definition pins](/docs/media-buy/specification#definition-pins) hash the `adagents.json` declaration, never the response copy.
 - **Unverified copies.** An entry whose `(publisher_domain, collection_id)` is not declared in that publisher's `adagents.json`, or that comes from a selling agent that `adagents.json` does not authorize for the collection, is unverified display data. It does not establish that the collection exists or is sellable, and buyers MUST NOT present it as the publisher's declaration. A response copy's `distribution` MUST NOT feed the carriage [verification states](#verification-states), which read `distribution[]` only from the owner's own file.
 - **Feed versions.** `include_collections` is part of the version scope of the `get_products` `wholesale_feed_version` and the `list_products` `feed_version`, for both `public` and `account` `cache_scope`. Absent and `false` are the same scope. Without the flag, collection copies are outside the version, so a card change alone never makes a buyer that did not ask for cards refetch the feed. With `include_collections: true`, the version also changes whenever any collection copy those reads would return changes, so an `unchanged` response never hides a fresher copy. A token issued under one setting and presented with the other is a mismatch, and the seller returns the full payload, as for any other scope-key difference. Sellers MUST issue distinct tokens for the two settings so the mismatch is detectable. [Wholesale feed webhooks](/docs/media-buy/task-reference/list_products#wholesale-feed-webhooks) for products carry no collections, and their versions belong to the scope without the flag. A webhook-fed mirror keeps cards current through the [`collection_card.*` and `collection_catalog.bulk_change` events](/docs/media-buy/task-reference/list_collections#collection-card-webhooks) (experimental, `media_buy.collection_catalog`), which carry their own `list_collections` version. Against a seller without them, it refreshes cards through a full read with `include_collections: true`.
 

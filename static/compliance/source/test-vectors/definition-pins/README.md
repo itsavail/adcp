@@ -23,7 +23,8 @@ they are published here as data rather than prose.
   `images`, `sample_content` or `url`, or reordered set array is
   not drift; a `content_rating`, `params`, `status`, or unnamed-member change
   is. A refreshed `distribution[].followers` count is not drift; any other
-  change to a `distribution` entry, such as an identifier, is.
+  change to a `distribution` entry, such as an identifier, is. A re-verified
+  `owner_authorizations` record is not drift.
 - **`non_ijson_vectors`**: raw published text that has no JCS form, or that
   does and must resolve.
 - **`pin_ordering_vector`**: the canonical order of `definition_pins[]`.

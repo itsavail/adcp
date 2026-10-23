@@ -167,9 +167,11 @@ const MODEL_CONTEXT_BUDGET_KIB = {
 // Core gender's predicate, capability, and complete readback closure reaches
 // the seeded Product. The merged controller input measures 1_309_147 bytes;
 // bound it at 1_310_000 so every storyboard fixture still compiles.
+// Experimental social_profile owner_authorizations (#6538) on property and
+// collection measured +4,942 bytes (1_309_147 → 1_314_089); bound at 1_315_000.
 // This is the parity-test compiler allowance; the independent 4 MiB schema,
 // 22 MiB projection, and role model-context budgets are unchanged.
-const PARITY_COMPILE_LIMIT = 1_310_000;
+const PARITY_COMPILE_LIMIT = 1_315_000;
 
 function readJson(filename) {
   return JSON.parse(fs.readFileSync(filename, 'utf8'));

@@ -51,6 +51,7 @@
         "ext",
         "images",
         "name",
+        "owner_authorizations",
         "publisher_domain",
         "related_collections",
         "sample_content",
@@ -932,6 +933,91 @@
         "same_content_digest": true,
         "content_digest_a": "143399434101f70ab056c3d08813222692c37ef14d168081d7d0a47ed5c3cc27",
         "content_digest_b": "143399434101f70ab056c3d08813222692c37ef14d168081d7d0a47ed5c3cc27"
+      }
+    },
+    {
+      "id": "collection-owner-authorizations-are-not-drift",
+      "ref_kind": "publisher_collection",
+      "name": "Refreshing an owner authorization record is not drift",
+      "why": "owner_authorizations is excluded from the projection, so an operator re-verifying a platform grant, or removing a revoked one, does not fail draft or committed proposals. Buyers read current authorization evidence from the seller response, not from pins.",
+      "entry_a": {
+        "publisher_domain": "creator-network.example",
+        "collection_id": "nova_cooks",
+        "name": "Nova Cooks",
+        "kind": "series",
+        "genre": [
+          "food"
+        ],
+        "language": "en",
+        "cadence": "weekly",
+        "status": "active",
+        "distribution": [
+          {
+            "publisher_domain": "videoplatform.example",
+            "identifiers": [
+              {
+                "type": "youtube_channel_id",
+                "value": "UCexample123456"
+              }
+            ]
+          }
+        ],
+        "owner_authorizations": [
+          {
+            "method": "platform_oauth",
+            "platform_domain": "videoplatform.example",
+            "account": {
+              "type": "youtube_channel_id",
+              "value": "UCexample123456"
+            },
+            "verified_by": {
+              "domain": "creator-network.example"
+            },
+            "verified_at": "2026-10-01T09:00:00Z"
+          }
+        ]
+      },
+      "entry_b": {
+        "publisher_domain": "creator-network.example",
+        "collection_id": "nova_cooks",
+        "name": "Nova Cooks",
+        "kind": "series",
+        "genre": [
+          "food"
+        ],
+        "language": "en",
+        "cadence": "weekly",
+        "status": "active",
+        "distribution": [
+          {
+            "publisher_domain": "videoplatform.example",
+            "identifiers": [
+              {
+                "type": "youtube_channel_id",
+                "value": "UCexample123456"
+              }
+            ]
+          }
+        ],
+        "owner_authorizations": [
+          {
+            "method": "platform_oauth",
+            "platform_domain": "videoplatform.example",
+            "account": {
+              "type": "youtube_channel_id",
+              "value": "UCexample123456"
+            },
+            "verified_by": {
+              "domain": "creator-network.example"
+            },
+            "verified_at": "2026-10-20T14:05:00Z"
+          }
+        ]
+      },
+      "expected": {
+        "content_digest_a": "fb0912e395634424a04b424754581fcdb626539c8e36111d2f7978627f5267b7",
+        "content_digest_b": "fb0912e395634424a04b424754581fcdb626539c8e36111d2f7978627f5267b7",
+        "same_content_digest": true
       }
     },
     {
