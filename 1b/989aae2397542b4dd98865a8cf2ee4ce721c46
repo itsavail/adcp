@@ -1,0 +1,20 @@
+dist/compliance/storyboard-runner-options.d.ts
+  h_a76cfb27b94a30 1-102
+dist/compliance/storyboard-runner-options.d.ts.map
+  h_a76cfb27b94a30 1
+dist/compliance/storyboard-runner-options.js
+  h_a76cfb27b94a30 1-151
+dist/compliance/storyboard-runner-options.js.map
+  h_a76cfb27b94a30 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1b989aae2397542b4dd98865a8cf2ee4ce721c46",
+  "prompts": {},
+  "humans": {
+    "h_a76cfb27b94a30": {
+      "author": "Ryan <ryan@itsavail.com>"
+    }
+  }
+}
