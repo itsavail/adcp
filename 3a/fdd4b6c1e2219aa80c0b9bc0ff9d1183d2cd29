@@ -1,0 +1,71 @@
+.changeset/social-profile-owner-authorizations.md
+  s_a61596a6882433::t_a562e2c95a08aa 1-5
+docs/brand-protocol/brand-json.mdx
+  s_a61596a6882433::t_d42893dd28b1dd 1247-1248,1264
+docs/governance/property/specification.mdx
+  s_a61596a6882433::t_08673442b51f00 75
+docs/media-buy/product-discovery/collections-and-installments.mdx
+  s_a61596a6882433::t_fb9ab484e236d6 136,298-351,864
+docs/media-buy/specification.mdx
+  s_a61596a6882433::t_b214229feb8080 634,649-650
+docs/media-buy/task-reference/get_products.mdx
+  s_a61596a6882433::t_41511361868a02 824
+docs/reference/experimental-status.mdx
+  s_a61596a6882433::t_088898318504f8 143
+package.json
+  s_a61596a6882433::t_c1fc2b90507abd 36
+static/compliance/source/test-vectors/definition-pins/README.md
+  s_a61596a6882433::t_52efe0901af41a 26-27
+static/compliance/source/test-vectors/definition-pins/vectors.json
+  s_a61596a6882433::t_0092b6e377b08a 54,938-1022
+static/schemas/source/brand.json
+  s_a61596a6882433::t_3ad3e1c6f99741 412-427
+static/schemas/source/core/collection.json
+  s_a61596a6882433::t_233a0534d6b288 117-126
+static/schemas/source/core/owner-authorization.json
+  s_a61596a6882433::t_0d5e7db1e3477a 1-69
+static/schemas/source/core/property.json
+  s_a61596a6882433::t_4001542d0c2d92 62-71
+static/schemas/source/core/response-collection.json
+  s_a61596a6882433::t_4a53758835d6f1 5
+static/schemas/source/enums/identifier-types.json
+  s_a61596a6882433::t_2047481e81a3aa 28-31,54-57
+static/schemas/source/enums/property-type.json
+  s_a61596a6882433::t_35c33e953afede 17-18,30-31
+static/schemas/source/media-buy/get-products-response.json
+  s_a61596a6882433::t_5a2f8cb7af4e3f 70
+static/schemas/source/media-buy/list-collections-response.json
+  s_a61596a6882433::t_404e6ce6fb882b 5
+static/schemas/source/media-buy/list-products-response.json
+  s_a61596a6882433::t_e8fc071921a1f3 23
+static/schemas/source/media-buy/refine-proposals-response.json
+  s_a61596a6882433::t_309a924fcfecca 221
+static/schemas/source/media-buy/request-proposals-response.json
+  s_a61596a6882433::t_9041d8d26b7867 39
+tests/check-platform-agnostic.cjs
+  s_a61596a6882433::t_dbfe09a4eb7e88 144-146
+tests/fast-channel-collections.test.cjs
+  s_a61596a6882433::t_62d6293b2b8354 416,420,488-489
+tests/lint-schema-enum-drift.test.cjs
+  s_a61596a6882433::t_bfbce0cb3f165e 67
+tests/mcp-schema-projection.test.cjs
+  s_a61596a6882433::t_ebb97e17e7f238 170-171,174
+tests/social-profile-owner-authorization.test.cjs
+  s_a61596a6882433::t_3bdc0355705b5b 1-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3afdd4b6c1e2219aa80c0b9bc0ff9d1183d2cd29",
+  "prompts": {},
+  "sessions": {
+    "s_a61596a6882433": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a61596a6882433",
+        "model": "unknown"
+      },
+      "human_author": "Ryan <ryan@itsavail.com>"
+    }
+  }
+}
