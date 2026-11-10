@@ -47,6 +47,8 @@ const WHOLE_FILE_3_3 = [
   // DOOH impression basis (media_buy.dooh_impression_basis, RFC #7253).
   'enums/impression-estimation-basis.json',
   'core/impression-basis-breakdown-entry.json',
+  // Social profiles (media_buy.social_profiles, #6538).
+  'core/owner-authorization.json',
 ];
 
 const PROPERTIES_3_3 = [
@@ -115,6 +117,10 @@ const PROPERTIES_3_3 = [
   ['core/assets/html-asset.json', ['properties', 'sizes']],
   ['core/assets/display-tag-asset.json', ['properties', 'sizes']],
   ['brand.json', ['definitions', 'brand', 'properties', 'prohibited_terms']],
+  ['brand.json', ['definitions', 'property', 'properties', 'identifier_type']],
+  ['brand.json', ['definitions', 'property', 'properties', 'owner_authorizations']],
+  ['core/property.json', ['properties', 'owner_authorizations']],
+  ['core/collection.json', ['properties', 'owner_authorizations']],
   ['core/agent-notification-config.json', ['properties', 'signing_profile']],
   ['core/notification-config.json', ['properties', 'signing_profile']],
   ['core/push-notification-config.json', ['properties', 'signing_profile']],
@@ -215,6 +221,8 @@ test('added enum values are noted in the enum description', () => {
   const definition = load('core/reporting-report-definition.json');
   assert.match(definition.properties.contract_version.description, /`1\.2`.*3\.3/);
   assert.equal(definition.allOf.find(branch => branch.if?.properties?.contract_version?.const === '1.2')['x-added-in'], '3.3.0');
+  assert.match(load('enums/identifier-types.json').description, /`youtube_channel_id`, `tiktok_id` and `instagram_user_id`.*3\.3/);
+  assert.match(load('enums/property-type.json').description, /`social_profile`.*3\.3/);
 });
 
 test('surfaces shipped in 3.2 are not marked 3.3', () => {

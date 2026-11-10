@@ -1275,6 +1275,12 @@
           "description": "Canonical gender value set with explicit unknown-gender membership Experimental in AdCP 3.3 (media_buy.gender_targeting). AdCP 3.2 core remains age-only.",
           "x-status": "experimental",
           "x-added-in": "3.3.0"
+        },
+        "owner-authorization": {
+          "$ref": "/schemas/core/owner-authorization.json",
+          "description": "Operator-attested evidence that a platform account's owner connected an operator to it. Experimental in AdCP 3.3 (media_buy.social_profiles).",
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
         }
       },
       "requirements": {

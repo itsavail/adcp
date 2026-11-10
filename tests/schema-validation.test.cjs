@@ -402,7 +402,12 @@ async function runTests() {
         document: propertyType => ({
           id: 'canonical_property_types',
           names: [{ en: 'Canonical property types' }],
-          properties: [{ type: propertyType, identifier: 'property-id' }]
+          properties: [{
+            type: propertyType,
+            identifier: 'property-id',
+            // brand.json requires identifier_type on a social_profile property.
+            ...(propertyType === 'social_profile' && { identifier_type: 'youtube_channel_id' })
+          }]
         })
       },
       {

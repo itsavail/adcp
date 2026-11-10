@@ -64,7 +64,7 @@ test('lint reports an inline enum that is a strict subset of a canonical enum', 
       file: 'drifted.json',
       path: '/properties/surface',
       canonicalEnum: 'property-type.json',
-      missing: ['linear_tv'],
+      missing: ['linear_tv', 'social_profile'],
     },
   ]);
 });

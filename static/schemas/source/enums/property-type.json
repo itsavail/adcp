@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "/schemas/enums/property-type.json",
   "title": "Property Type",
-  "description": "Types of addressable advertising properties with verifiable ownership. Property types are a subset of media channels - they represent inventory surfaces that can be validated via adagents.json.",
+  "description": "Types of addressable advertising properties with verifiable ownership. Property types are a subset of media channels - they represent inventory surfaces that can be validated via adagents.json. The `social_profile` value was added in AdCP 3.3.",
   "type": "string",
   "enum": [
     "website",
@@ -14,7 +14,8 @@
     "radio",
     "linear_tv",
     "streaming_audio",
-    "ai_assistant"
+    "ai_assistant",
+    "social_profile"
   ],
   "enumDescriptions": {
     "website": "Web properties accessible via browser, identified by domain",
@@ -26,6 +27,7 @@
     "radio": "Radio station properties, identified by station ID or facility ID",
     "linear_tv": "Linear television stations and networks, identified by station ID or facility ID",
     "streaming_audio": "Digital audio streaming properties, identified by platform-specific IDs",
-    "ai_assistant": "AI-powered conversational interfaces including chatbots, AI assistants, and conversational AI platforms, identified by platform-specific IDs"
+    "ai_assistant": "AI-powered conversational interfaces including chatbots, AI assistants, and conversational AI platforms, identified by platform-specific IDs",
+    "social_profile": "Experimental (media_buy.social_profiles). Creator and publisher accounts on social and video platforms (a channel, profile or page), identified by the platform's account ID"
   }
 }

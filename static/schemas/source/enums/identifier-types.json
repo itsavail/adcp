@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "/schemas/enums/identifier-types.json",
   "title": "Property Identifier Types",
-  "description": "Valid identifier types for property and placement identification across different media types",
+  "description": "Valid identifier types for property and placement identification across different media types. The `youtube_channel_id`, `tiktok_id` and `instagram_user_id` values were added in AdCP 3.3.",
   "type": "string",
   "enum": [
     "domain",
@@ -25,7 +25,10 @@
     "spotify_collection_id",
     "podcast_guid",
     "station_id",
-    "facility_id"
+    "facility_id",
+    "youtube_channel_id",
+    "tiktok_id",
+    "instagram_user_id"
   ],
   "enumDescriptions": {
     "domain": "Web domain (e.g., example.com)",
@@ -48,7 +51,10 @@
     "spotify_collection_id": "Spotify show or collection URI",
     "podcast_guid": "Podcast GUID (podcasting 2.0 namespace)",
     "station_id": "Broadcast station identifier — call sign, station name, or other locally recognized identifier (e.g., WCBS-FM, BBC Radio 4, France Inter, 2GB)",
-    "facility_id": "Broadcast facility or license ID from a national regulator, prefixed with authority slug (e.g., fcc:73953, ofcom:AL000001). Known prefixes: fcc (US), crtc (Canada), ift (Mexico), ofcom (UK), arcom (France), bnetza/medienanstalt (Germany), acma (Australia), mic (Japan), kcc (South Korea), anatel (Brazil), enacom (Argentina), trai (India)"
+    "facility_id": "Broadcast facility or license ID from a national regulator, prefixed with authority slug (e.g., fcc:73953, ofcom:AL000001). Known prefixes: fcc (US), crtc (Canada), ift (Mexico), ofcom (UK), arcom (France), bnetza/medienanstalt (Germany), acma (Australia), mic (Japan), kcc (South Korea), anatel (Brazil), enacom (Argentina), trai (India)",
+    "youtube_channel_id": "Experimental (media_buy.social_profiles). YouTube channel ID (e.g., UCexample123456). A handle or URL is not an identifier.",
+    "tiktok_id": "Experimental (media_buy.social_profiles). TikTok account ID",
+    "instagram_user_id": "Experimental (media_buy.social_profiles). Instagram professional account ID, a numeric string (e.g., 17841400000000000). The @username is not an identifier."
   },
   "examples": [
     "domain",
