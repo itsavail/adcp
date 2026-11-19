@@ -425,6 +425,16 @@
           },
           "x-status": "experimental",
           "x-added-in": "3.3.0"
+        },
+        "attestations": {
+          "type": "array",
+          "description": "Experimental (media_buy.social_profiles). Signed claims about this property, each a portable attestation reference (core/attestation-reference.json). A buyer evaluates each reference under the portable-attestation procedure in the security documentation. A reference that is present but not verified proves nothing. For the creator sales-authorization claim type, the credential's subject MUST name this property ({type: identifier_type, value: identifier}), or the evaluation is subject_mismatch. A verified credential makes the account operator-attested. A verified creator anchor as well makes it mutually attested.",
+          "minItems": 1,
+          "items": {
+            "$ref": "/schemas/core/attestation-reference.json"
+          },
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
         }
       },
       "required": ["type", "identifier"],

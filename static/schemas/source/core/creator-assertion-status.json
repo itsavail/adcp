@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/core/creator-assertion-status.json",
+  "title": "Creator Assertion Status",
+  "x-status": "experimental",
+  "x-added-in": "3.3.0",
+  "description": "Experimental (media_buy.social_profiles). Signed status of one creator sales-authorization credential, served at the credential's optional status_url. It is a JWS compact serialization with typ adcp-creator-assertion-status+jws. It is signed by a key from the credential's JWKS with the same attestation-signing purpose. The status values mirror the rights-grant grant_status (active, paused, revoked) and add unknown. this_update and next_update work as they do in OCSP. An unsigned, wrongly signed, stale or unreachable status yields unverifiable, never revoked.",
+  "type": "object",
+  "properties": {
+    "credential_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9._:-]+$",
+      "description": "The credential_id this status answers for. It MUST equal the credential's, or the status is unverifiable.",
+      "x-entity": "attestation_credential"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "revoked", "unknown"],
+      "description": "active: the issuer still makes the claim. paused: the issuer has suspended the claim and may resume it, but only by issuing a new credential with a new credential_id. revoked: the issuer has withdrawn the claim. unknown: the issuer does not recognize the credential_id. Only active can evaluate to verified. paused, revoked and unknown evaluate to revoked. A paused or revoked credential never becomes active again."
+    },
+    "this_update": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the issuer determined this status. A status whose this_update is more than 60 seconds after the evaluation time is not current."
+    },
+    "next_update": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the issuer will next determine the status. A status is current only while next_update is in the future. A status that is not current yields unverifiable, never revoked."
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Human-readable reason for a paused or revoked status, such as the creator disconnecting the operator. Informational only."
+    },
+    "ext": {
+      "$ref": "/schemas/core/ext.json"
+    }
+  },
+  "required": ["credential_id", "status", "this_update", "next_update"],
+  "additionalProperties": true,
+  "examples": [
+    {
+      "credential_id": "ca_kitchen_lab_0001",
+      "status": "active",
+      "this_update": "2026-10-21T09:00:00Z",
+      "next_update": "2026-10-22T09:00:00Z"
+    }
+  ]
+}

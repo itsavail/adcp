@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/core/creator-anchor.json",
+  "title": "Creator Anchor",
+  "x-status": "experimental",
+  "x-added-in": "3.3.0",
+  "description": "Experimental (media_buy.social_profiles). A place the creator controls that confirms the operator's sales-authorization claim. A confirmed anchor makes the claim mutually attested. The evaluator checks the anchor with its own request, as the verify_brand_claim two-calls rule does for brand claims. It never relies on the issuer's statement that the anchor holds. A confirmed anchor confirms the profile at url. Where the platform addresses a profile by the subject's identifier, url MUST be that address. That is the case for youtube_channel_id, tiktok_id and instagram_handle. For instagram_account_id the link between url and the account is the issuer's statement. An anchor the evaluator cannot check leaves the credential operator-attested, not invalid.",
+  "discriminator": {
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "title": "PlatformProfileTextAnchor",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "platform_profile_text"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "HTTPS URL of the account's public profile page. Its registrable domain MUST equal the platform_domain of the credential's evidence. For a youtube_channel_id, tiktok_id or instagram_handle subject it MUST be the profile address built from the identifier, as the security documentation defines, or the anchor fails. For an instagram_account_id subject the evaluator cannot check that the page belongs to the account."
+        },
+        "expected": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Text the creator placed in the profile, such as a bio line naming the operator's domain. The evaluator confirms that the page at url contains this exact string."
+        },
+        "ext": {
+          "$ref": "/schemas/core/ext.json"
+        }
+      },
+      "required": ["type", "url", "expected"],
+      "additionalProperties": false
+    }
+  ],
+  "examples": [
+    {
+      "type": "platform_profile_text",
+      "url": "https://www.videoplatform.example/channel/UCexample123456",
+      "expected": "Brand deals: novacreators.example"
+    }
+  ]
+}

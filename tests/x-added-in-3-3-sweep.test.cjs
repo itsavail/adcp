@@ -49,6 +49,9 @@ const WHOLE_FILE_3_3 = [
   'core/impression-basis-breakdown-entry.json',
   // Social profiles (media_buy.social_profiles, #6538).
   'core/owner-authorization.json',
+  'core/creator-assertion.json',
+  'core/creator-assertion-status.json',
+  'core/creator-anchor.json',
 ];
 
 const PROPERTIES_3_3 = [
@@ -121,6 +124,9 @@ const PROPERTIES_3_3 = [
   ['brand.json', ['definitions', 'property', 'properties', 'owner_authorizations']],
   ['core/property.json', ['properties', 'owner_authorizations']],
   ['core/collection.json', ['properties', 'owner_authorizations']],
+  ['brand.json', ['definitions', 'property', 'properties', 'attestations']],
+  ['core/property.json', ['properties', 'attestations']],
+  ['core/collection.json', ['properties', 'attestations']],
   ['core/agent-notification-config.json', ['properties', 'signing_profile']],
   ['core/notification-config.json', ['properties', 'signing_profile']],
   ['core/push-notification-config.json', ['properties', 'signing_profile']],

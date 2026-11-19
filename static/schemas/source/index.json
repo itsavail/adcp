@@ -1281,6 +1281,24 @@
           "description": "Operator-attested evidence that a platform account's owner connected an operator to it. Experimental in AdCP 3.3 (media_buy.social_profiles).",
           "x-status": "experimental",
           "x-added-in": "3.3.0"
+        },
+        "creator-assertion": {
+          "$ref": "/schemas/core/creator-assertion.json",
+          "description": "Payload of a signed creator sales-authorization credential, carried as an embedded attestation credential. Experimental in AdCP 3.3 (media_buy.social_profiles).",
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
+        },
+        "creator-assertion-status": {
+          "$ref": "/schemas/core/creator-assertion-status.json",
+          "description": "Signed status of one creator sales-authorization credential, returned at its status_url. Experimental in AdCP 3.3 (media_buy.social_profiles).",
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
+        },
+        "creator-anchor": {
+          "$ref": "/schemas/core/creator-anchor.json",
+          "description": "A place the creator controls that confirms an operator's sales-authorization claim. Experimental in AdCP 3.3 (media_buy.social_profiles).",
+          "x-status": "experimental",
+          "x-added-in": "3.3.0"
         }
       },
       "requirements": {
