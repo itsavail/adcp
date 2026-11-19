@@ -342,6 +342,13 @@ policy, as they MAY accept host-delegated. The registry supply-path endpoint
 does not use `owner_authorizations`. Its result is the same with or without a
 record.
 
+Two identifier types hold a username, `tiktok_id` and `instagram_handle`. A
+username can change, and another account can claim it later. An operator MUST
+read the account's current username each time it confirms the grant, and
+`verified_at` is the time of that check. A buyer SHOULD treat a record of
+either type as absent when `verified_at` is more than 7 days old. A buyer MUST
+NOT assume that the same username at a later time names the same account.
+
 An operator MUST remove a record when the owner revokes the grant or the grant
 stops resolving to the account. Sellers that return `social_profile` properties
 or `owner_authorizations` records list `media_buy.social_profiles` in

@@ -22,16 +22,16 @@
       "description": "The platform account the grant resolves to. On a property, it MUST equal one of the property's identifiers. On a collection, it MUST equal an identifier on the distribution entry whose publisher_domain equals platform_domain.",
       "properties": {
         "type": {
-          "description": "Which kind of ID value holds. Limited to the identifier types that name an account on a social or video platform.",
+          "description": "Which kind of identifier value holds. Limited to the identifier types that name an account on a social or video platform.",
           "allOf": [
             { "$ref": "/schemas/enums/identifier-types.json" },
-            { "enum": ["youtube_channel_id", "tiktok_id", "instagram_user_id"] }
+            { "enum": ["youtube_channel_id", "tiktok_id", "instagram_account_id", "instagram_handle"] }
           ]
         },
         "value": {
           "type": "string",
           "minLength": 1,
-          "description": "The platform's account ID"
+          "description": "The account ID or username, as the identifier type defines it."
         }
       },
       "required": ["type", "value"],
@@ -44,7 +44,7 @@
     "verified_at": {
       "type": "string",
       "format": "date-time",
-      "description": "When the operator last confirmed the grant was live, for example by a successful API call made as the account. Buyers MAY treat a record whose verified_at is older than their policy allows as absent."
+      "description": "When the operator last confirmed the grant was live, for example by a successful API call made as the account. When account.type is tiktok_id or instagram_handle, the operator MUST read the account's current username in the same check. Buyers SHOULD treat a record of either type as absent when verified_at is more than 7 days old. For other types, buyers MAY treat a record whose verified_at is older than their policy allows as absent."
     }
   },
   "required": ["method", "platform_domain", "account", "verified_by", "verified_at"],

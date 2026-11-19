@@ -43,6 +43,13 @@ test('owner-authorization accepts a platform_oauth record and its documented exa
   for (const example of schema.examples) {
     assert.equal(validate(example), true, JSON.stringify(validate.errors));
   }
+  for (const account of [
+    { type: 'tiktok_id', value: 'kitchenlab' },
+    { type: 'instagram_account_id', value: '17841400000000000' },
+    { type: 'instagram_handle', value: 'kitchenlab' },
+  ]) {
+    assert.equal(validate({ ...record, account }), true, JSON.stringify(validate.errors));
+  }
 });
 
 test('owner-authorization rejects records missing required members or with bad values', async () => {
@@ -56,6 +63,7 @@ test('owner-authorization rejects records missing required members or with bad v
     { ...record, platform_domain: 'https://videoplatform.example' },
     { ...record, platform_domain: 'localhost' },
     { ...record, account: { type: 'handle', value: '@kitchenlab' } },
+    { ...record, account: { type: 'instagram_user_id', value: '17841400000000000' } },
     { ...record, account: { type: 'domain', value: 'jordanvega.example' } },
     { ...record, account: { ...record.account, extra: true } },
     { ...record, verified_at: 'yesterday' },

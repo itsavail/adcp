@@ -221,7 +221,7 @@ test('added enum values are noted in the enum description', () => {
   const definition = load('core/reporting-report-definition.json');
   assert.match(definition.properties.contract_version.description, /`1\.2`.*3\.3/);
   assert.equal(definition.allOf.find(branch => branch.if?.properties?.contract_version?.const === '1.2')['x-added-in'], '3.3.0');
-  assert.match(load('enums/identifier-types.json').description, /`youtube_channel_id`, `tiktok_id` and `instagram_user_id`.*3\.3/);
+  assert.match(load('enums/identifier-types.json').description, /`youtube_channel_id`, `tiktok_id`, `instagram_account_id` and `instagram_handle`.*3\.3/);
   assert.match(load('enums/property-type.json').description, /`social_profile`.*3\.3/);
 });
 
