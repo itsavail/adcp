@@ -412,7 +412,7 @@
         },
         "identifier_type": {
           "$ref": "/schemas/enums/identifier-types.json",
-          "description": "Experimental (media_buy.social_profiles). Which kind of ID identifier holds, for example youtube_channel_id. Required when type is social_profile, because account IDs from different platforms can collide. Optional for other types, where type and store already imply it.",
+          "description": "Experimental (media_buy.social_profiles). Which kind of ID identifier holds, for example youtube_channel_id. Required when type is social_profile, because account IDs from different platforms can collide. For social_profile it is one of youtube_channel_id, tiktok_id, instagram_account_id and instagram_handle. Optional for other types, where type and store already imply it.",
           "x-status": "experimental",
           "x-added-in": "3.3.0"
         },
@@ -434,7 +434,12 @@
             "properties": { "type": { "const": "social_profile" } },
             "required": ["type"]
           },
-          "then": { "required": ["identifier_type"] }
+          "then": {
+            "properties": {
+              "identifier_type": { "enum": ["youtube_channel_id", "tiktok_id", "instagram_account_id", "instagram_handle"] }
+            },
+            "required": ["identifier_type"]
+          }
         }
       ],
       "additionalProperties": true

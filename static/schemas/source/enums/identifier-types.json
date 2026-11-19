@@ -54,7 +54,7 @@
     "station_id": "Broadcast station identifier — call sign, station name, or other locally recognized identifier (e.g., WCBS-FM, BBC Radio 4, France Inter, 2GB)",
     "facility_id": "Broadcast facility or license ID from a national regulator, prefixed with authority slug (e.g., fcc:73953, ofcom:AL000001). Known prefixes: fcc (US), crtc (Canada), ift (Mexico), ofcom (UK), arcom (France), bnetza/medienanstalt (Germany), acma (Australia), mic (Japan), kcc (South Korea), anatel (Brazil), enacom (Argentina), trai (India)",
     "youtube_channel_id": "Experimental (media_buy.social_profiles). YouTube channel ID (e.g., UCexample123456). A handle or URL is not an identifier.",
-    "tiktok_id": "Experimental (media_buy.social_profiles). TikTok username without the @ (e.g., kitchenlab). The ID from the platform's OAuth is specific to one application and is not an identifier. A username can change, and another account can claim it later.",
+    "tiktok_id": "Experimental (media_buy.social_profiles). TikTok username without the @ (e.g., kitchenlab). The ID from the platform's OAuth is specific to one application, so it is not used here. A username can change, and another account can claim it later.",
     "instagram_account_id": "Experimental (media_buy.social_profiles). Instagram account ID: the stable numeric user ID the platform's APIs return. Preferred canonical identifier for Instagram accounts; handles are discovery aliases that should resolve to this when possible.",
     "instagram_handle": "Experimental (media_buy.social_profiles). Instagram username such as @example. Useful as a discovery alias; the account ID is preferred for canonical matching."
   },

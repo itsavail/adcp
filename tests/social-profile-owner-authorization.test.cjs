@@ -113,6 +113,8 @@ test('brand.json property accepts a delegated social_profile with identifier_typ
   };
   assert.equal(validate(social), true, JSON.stringify(validate.errors));
   assert.equal(validate({ ...social, identifier_type: 'handle' }), false, 'unknown identifier_type should fail');
+  assert.equal(validate({ ...social, identifier_type: 'domain' }), false, 'a non-social identifier_type should fail');
+  assert.equal(validate({ type: 'website', identifier: 'novacreators.example', identifier_type: 'domain' }), true, 'other types keep the full identifier list');
   const { identifier_type, ...untyped } = social;
   assert.equal(validate(untyped), false, 'social_profile without identifier_type should fail');
   assert.equal(validate({ type: 'website', identifier: 'novacreators.example' }), true, 'other types need no identifier_type');
