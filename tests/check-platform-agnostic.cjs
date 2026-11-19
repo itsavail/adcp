@@ -147,6 +147,13 @@ const ENUM_VALUE_ALLOWLIST = [
   { value: 'roku_store_id',      pathContains: 'enums/identifier-types.json' },
   { value: 'apple_tv_bundle',    pathContains: 'enums/identifier-types.json' },
   { value: 'apple_podcast_id',   pathContains: 'enums/identifier-types.json' },
+  // The Instagram identifier types also name social_profile properties, in brand.json too, and the account in an owner authorization (#6538).
+  { value: 'instagram_account_id', pathContains: 'enums/identifier-types.json' },
+  { value: 'instagram_handle',     pathContains: 'enums/identifier-types.json' },
+  { value: 'instagram_account_id', pathContains: 'core/owner-authorization.json' },
+  { value: 'instagram_handle',     pathContains: 'core/owner-authorization.json' },
+  { value: 'instagram_account_id', pathContains: 'brand.json' },
+  { value: 'instagram_handle',     pathContains: 'brand.json' },
 
   // enums/metro-system.json — Nielsen DMA is the industry-standard geographic
   // division (same justification as FIELD_ALLOWLIST entry).

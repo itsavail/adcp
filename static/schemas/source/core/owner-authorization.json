@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/core/owner-authorization.json",
+  "title": "Owner Authorization",
+  "x-status": "experimental",
+  "x-added-in": "3.3.0",
+  "description": "Experimental (media_buy.social_profiles). Operator-attested evidence that the owner of a platform account connected an operator to that account. With method platform_oauth, the operator holds an OAuth grant that the account owner approved on the platform, and the grant resolves to the account named here. The record is the operator's own statement: buyers cannot check the grant, so it is weaker than an adagents.json the owner publishes on a domain the owner controls. It shows the owner connected the operator. It does not show the owner authorized the operator to sell. An operator MUST remove the record when the grant is revoked or stops resolving to the account. Buyers weigh it under their own policy, as described in the platform OAuth evidence section of the collections documentation. A seller serving or relaying it MUST list media_buy.social_profiles in experimental_features on get_adcp_capabilities.",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": ["platform_oauth"],
+      "description": "How the operator holds the owner's authorization. platform_oauth: an OAuth grant the account owner approved on the platform that hosts the account."
+    },
+    "platform_domain": {
+      "type": "string",
+      "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$",
+      "description": "Registrable domain of the platform that issued the grant and hosts the account. Same value as publisher_domain on the matching collection distribution entry."
+    },
+    "account": {
+      "type": "object",
+      "description": "The platform account the grant resolves to. On a property, it MUST equal one of the property's identifiers. On a collection, it MUST equal an identifier on the distribution entry whose publisher_domain equals platform_domain.",
+      "properties": {
+        "type": {
+          "description": "Which kind of identifier value holds. Limited to the identifier types that name an account on a social or video platform.",
+          "allOf": [
+            { "$ref": "/schemas/enums/identifier-types.json" },
+            { "enum": ["youtube_channel_id", "tiktok_id", "instagram_account_id", "instagram_handle"] }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The account ID or username, as the identifier type defines it."
+        }
+      },
+      "required": ["type", "value"],
+      "additionalProperties": false
+    },
+    "verified_by": {
+      "$ref": "/schemas/core/brand-ref.json",
+      "description": "The operator that holds the grant. Its brand.json identifies the operator, and buyers compare it with the selling agent's operator."
+    },
+    "verified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the operator last confirmed the grant was live, for example by a successful API call made as the account. When account.type is tiktok_id or instagram_handle, the operator MUST read the account's current username in the same check. Buyers SHOULD treat a record of either type as absent when verified_at is more than 7 days old. For other types, buyers MAY treat a record whose verified_at is older than their policy allows as absent."
+    }
+  },
+  "required": ["method", "platform_domain", "account", "verified_by", "verified_at"],
+  "additionalProperties": true,
+  "examples": [
+    {
+      "method": "platform_oauth",
+      "platform_domain": "videoplatform.example",
+      "account": { "type": "youtube_channel_id", "value": "UCexample123456" },
+      "verified_by": { "domain": "novacreators.example" },
+      "verified_at": "2026-10-20T14:05:00Z"
+    }
+  ]
+}

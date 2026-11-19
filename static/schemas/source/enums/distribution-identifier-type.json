@@ -56,7 +56,7 @@
     "pluto_channel_id": "Pluto TV channel ID",
     "tubi_id": "Tubi content ID",
     "peacock_id": "Peacock content ID",
-    "tiktok_id": "TikTok account ID",
+    "tiktok_id": "TikTok username without the @ (e.g., kitchenlab). The ID from the platform's OAuth is specific to one application, so it is not used here. A username can change, and another account can claim it later.",
     "twitch_channel": "Twitch channel name",
     "instagram_account_id": "Instagram account ID: the stable numeric user ID the platform's APIs return. Preferred canonical identifier for Instagram accounts; handles are discovery aliases that should resolve to this when possible.",
     "instagram_handle": "Instagram username such as @example. Useful as a discovery alias; the account ID is preferred for canonical matching.",
