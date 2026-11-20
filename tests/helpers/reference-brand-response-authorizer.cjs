@@ -274,6 +274,7 @@ function assessBrandResponseAuthorization(input) {
 }
 
 module.exports = {
+  applicableBrandRefAgents,
   assessBrandAgentAuthorization,
   assessBrandResponseAuthorization,
   canonicalizeFixtureUrl,

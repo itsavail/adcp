@@ -20,6 +20,7 @@
       "name": "verified-credential",
       "description": "A current credential from the selling agent's operator, attached to its own channel, with an active status. It carries no anchor.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -103,6 +104,7 @@
       "name": "digest-mismatch",
       "description": "content_digest does not match the embedded credential bytes.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -181,6 +183,7 @@
       "name": "wrong-credential-typ",
       "description": "The credential header typ is not adcp-creator-assertion+jws, so the JWS profile rejects it before any request.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -259,6 +262,7 @@
       "name": "credential-moved-to-another-channel",
       "description": "A valid credential for one channel sits on another channel's property.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCgarden000001",
@@ -337,6 +341,7 @@
       "name": "issuer-is-not-the-selling-agent-operator",
       "description": "The selling agent's registrable domain is not the issuer's, so the issuer is untrusted before any request.",
       "selling_agent_url": "https://sales.othernetwork.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -415,6 +420,7 @@
       "name": "selling-agent-not-listed-by-issuer",
       "description": "The issuer's brand.json lists no sales agent with the selling agent's URL.",
       "selling_agent_url": "https://agents.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -493,6 +499,7 @@
       "name": "key-without-attestation-purpose",
       "description": "The signing key in the selected JWKS carries another adcp_use.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -571,6 +578,7 @@
       "name": "same-kid-different-key",
       "description": "The JWKS has a key with the credential's kid but different key material.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -649,6 +657,7 @@
       "name": "tampered-signature",
       "description": "The credential signature does not verify.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -727,6 +736,7 @@
       "name": "payload-subject-differs-from-reference",
       "description": "The signed payload names a different channel than the reference that carries it.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -805,6 +815,7 @@
       "name": "seller-is-not-the-issuer",
       "description": "value.seller names a party other than the issuer.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -883,6 +894,7 @@
       "name": "evidence-account-does-not-match-subject",
       "description": "evidence.account names a different channel than the subject.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -961,6 +973,7 @@
       "name": "expired-credential",
       "description": "expires_at has passed.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1039,6 +1052,7 @@
       "name": "status-url-off-issuer-domain",
       "description": "status_url is not on the issuer brand's domain, so the status is unverifiable with no status request.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1117,6 +1131,7 @@
       "name": "status-fetch-fails",
       "description": "The status request fails, which is unverifiable, never revoked.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1193,6 +1208,7 @@
       "name": "status-with-wrong-typ",
       "description": "The status JWS carries the credential typ.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1271,6 +1287,7 @@
       "name": "status-for-another-credential",
       "description": "The status answers for a different credential_id.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1349,6 +1366,7 @@
       "name": "stale-status",
       "description": "The status next_update has passed, so it is not current.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1427,6 +1445,7 @@
       "name": "paused-credential",
       "description": "A paused credential fails as revoked. Resuming issues a new credential.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1505,6 +1524,7 @@
       "name": "revoked-credential",
       "description": "The issuer has withdrawn the claim.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1583,6 +1603,7 @@
       "name": "unknown-credential",
       "description": "The issuer does not recognize the credential_id.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1661,6 +1682,7 @@
       "name": "anchor-confirmed",
       "description": "The anchor url is the channel address built from the channel ID, and the page contains the expected text.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1749,6 +1771,7 @@
       "name": "anchor-url-with-trailing-slash",
       "description": "A trailing slash on the anchor url is ignored when it is compared with the channel address.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1837,6 +1860,7 @@
       "name": "anchor-url-is-another-channel",
       "description": "The anchor url is another channel's address on the same platform. It fails before any anchor request, even though that page contains the expected text.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -1925,6 +1949,7 @@
       "name": "anchor-url-off-platform-domain",
       "description": "The anchor url is on another domain, so it is not the profile address built from the identifier. It fails before any anchor request.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2013,6 +2038,7 @@
       "name": "anchor-text-missing",
       "description": "The page is fetched, and it does not contain the expected text exactly. Its text differs in case.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2101,6 +2127,7 @@
       "name": "anchor-page-fetch-fails",
       "description": "The anchor request fails. The credential stays verified, and the anchor is unconfirmed.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2187,6 +2214,7 @@
       "name": "anchor-confirmed-for-tiktok-username",
       "description": "A tiktok_id subject. The anchor url is the profile address built from the username.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "kitchenlab",
@@ -2275,6 +2303,7 @@
       "name": "anchor-username-address-without-at-sign",
       "description": "A tiktok_id subject. The anchor url omits the @ that the profile address carries, so it fails before any anchor request.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "kitchenlab",
@@ -2363,6 +2392,7 @@
       "name": "anchor-confirmed-for-instagram-handle",
       "description": "An instagram_handle subject. The anchor url is the profile address built from the username.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "kitchenlab",
@@ -2451,6 +2481,7 @@
       "name": "anchor-unconfirmed-for-instagram-account-id",
       "description": "An instagram_account_id subject. No profile address is built from the account ID, so the evaluator cannot tie the page to the account. The anchor is unconfirmed with no anchor request, even though the page contains the expected text.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "17841400000000000",
@@ -2539,6 +2570,7 @@
       "name": "anchor-text-does-not-name-the-issuer",
       "description": "The expected text does not contain the issuer brand's domain. It fails before any anchor request, even though the page contains that text.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2627,6 +2659,7 @@
       "name": "anchor-of-unknown-type",
       "description": "The anchor is of a type this profile does not define. The credential stays verified and the anchor is unconfirmed.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2710,6 +2743,7 @@
       "name": "anchor-confirmed-for-handle-with-at-sign",
       "description": "An instagram_handle subject whose identifier carries a leading @. The @ is dropped when the profile address is built.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "@kitchenlab",
@@ -2798,6 +2832,7 @@
       "name": "credential-outlives-its-evidence",
       "description": "expires_at is more than 7 days after evidence.verified_at.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2873,9 +2908,1305 @@
       }
     },
     {
+      "name": "reference-claim-type-is-not-this-profile",
+      "description": "The reference carries another claim type, so this profile does not apply.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/rights/grant",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "unsupported",
+        "network_requests": 0
+      }
+    },
+    {
+      "name": "reference-subject-is-not-a-social-profile",
+      "description": "The reference subject has another resource type.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/rights-grant",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "unsupported",
+        "network_requests": 0
+      }
+    },
+    {
+      "name": "embedded-credential-format-is-not-this-profile",
+      "description": "The embedded credential names another proof format.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://formats.example/other",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "unsupported",
+        "network_requests": 0
+      }
+    },
+    {
+      "name": "reference-without-content-digest",
+      "description": "The reference omits content_digest, which this profile requires.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            }
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 0
+      }
+    },
+    {
+      "name": "credential-alg-not-allowed",
+      "description": "The credential header names an algorithm this profile does not allow.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002eldws3mKzePJCrRcRdR2lxVFJu2KUPj7iymuGikxPvdMdkdNrL8vNC4UF2Mg6q4mr2-fs0PBu8eW6_OGqppciAw"
+            },
+            "content_digest": "sha256:cf588113e2f2f79fedc76ab002d63b4ef08feaa8cd505ceca5962f2023e98e9e"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 0
+      }
+    },
+    {
+      "name": "brand-json-fetch-fails",
+      "description": "The request for the issuer's brand.json fails.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 503
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "unverifiable",
+        "network_requests": 1
+      }
+    },
+    {
+      "name": "jwks-fetch-fails",
+      "description": "The request for the selling agent's JWKS fails.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 503
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "unverifiable",
+        "network_requests": 2
+      }
+    },
+    {
+      "name": "key-is-in-another-agents-jwks",
+      "description": "The signing key is published by another sales agent of the same issuer. The selling agent's own JWKS does not hold it.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks-sales.json"
+              },
+              {
+                "type": "sales",
+                "id": "novacreators_sales_two",
+                "url": "https://sales-two.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        },
+        "https://novacreators.example/.well-known/jwks-sales.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-other-agent-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "rkUcKP5oMd7YjV4yy5mVS5S8fA3LDXcf5jk1P1_52EA"
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 2
+      }
+    },
+    {
+      "name": "payload-issuer-differs-from-reference",
+      "description": "The signed payload names another issuer than the reference that carries it.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im90aGVybmV0d29yay5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002eEpy5UNloFcG-Yn2gT4PzxASAsAgIMMFI9i6Pt4T7_LQugeWM_zWIj__yCNFjnHxtYkrKtgon2NDFnl-CN21YBw"
+            },
+            "content_digest": "sha256:f928dc3023525cac917943d10f7f4d28644a273b4a127bf1c9a3b1f06d274967"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 2
+      }
+    },
+    {
+      "name": "verified-by-is-not-the-issuer",
+      "description": "evidence.verified_by names a party other than the issuer.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im90aGVybmV0d29yay5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002enhHgAZqSW5qPeMJxeEhTVeGBOlvk98wos6NYIs1ioLERyjhKbJGdV8gu71Z7aoM_VnKZIJkhxLIRk0QOXy1GBA"
+            },
+            "content_digest": "sha256:2aa947d4df33cc9d703d23bec3761ba883cb7d5ce5a19728e3a579c1f8974475"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 2
+      }
+    },
+    {
+      "name": "issued-at-in-the-future",
+      "description": "issued_at is more than 60 seconds after the evaluation time.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wNlQxMjowNTowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002e-wnFA4eoDXcC9LAF6jlc7q7jXXncq8-v0x4h87TixiR5sQPjdhyWlMq2iIzFO58K-h2PaZyJZm64YoKV3wZjAg"
+            },
+            "content_digest": "sha256:db38454ec114917d52208e8f6b853cb82b0bdd2c16d0fef3b14f07902e83899f"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 2
+      }
+    },
+    {
+      "name": "status-signature-tampered",
+      "description": "The status signature does not verify.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002eAEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "unverifiable",
+        "network_requests": 3
+      }
+    },
+    {
+      "name": "status-this-update-in-the-future",
+      "description": "The status this_update is more than 60 seconds after the evaluation time, so the status is not current.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMjowNTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTI6MDU6MDBaIn0\u002eWOOpiT78kg1oE79RodeDL0fb3nt002T1EXUUg0_bkodhExV8_AhyDARM0dHLbd2KzGONoQi3lK7e2rd0qLexDg"
+        }
+      },
+      "expected": {
+        "outcome": "unverifiable",
+        "network_requests": 3
+      }
+    },
+    {
+      "name": "credential-on-a-property",
+      "description": "The carrier is a core/property.json property. The subject names one of its identifiers.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "property",
+      "carrier": {
+        "property_type": "social_profile",
+        "name": "Kitchen Lab with Jordan Vega",
+        "identifiers": [
+          {
+            "type": "youtube_channel_id",
+            "value": "UCexample123456"
+          }
+        ],
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "verified",
+        "network_requests": 3,
+        "action_binding": {
+          "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
+          "action_id": "https://sales.novacreators.example/mcp"
+        },
+        "anchor": "absent"
+      }
+    },
+    {
+      "name": "credential-on-a-collection",
+      "description": "The carrier is a collection. The subject names an identifier of the distribution entry for evidence.platform_domain.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "collection",
+      "carrier": {
+        "collection_id": "kitchen_lab",
+        "name": "Kitchen Lab with Jordan Vega",
+        "kind": "series",
+        "distribution": [
+          {
+            "publisher_domain": "videoplatform.example",
+            "identifiers": [
+              {
+                "type": "youtube_channel_id",
+                "value": "UCexample123456"
+              }
+            ]
+          }
+        ],
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "verified",
+        "network_requests": 3,
+        "action_binding": {
+          "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
+          "action_id": "https://sales.novacreators.example/mcp"
+        },
+        "anchor": "absent"
+      }
+    },
+    {
+      "name": "credential-on-a-collection-that-lacks-the-account",
+      "description": "The carrier is a collection whose distribution entry names another channel.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "collection",
+      "carrier": {
+        "collection_id": "kitchen_lab",
+        "name": "Kitchen Lab with Jordan Vega",
+        "kind": "series",
+        "distribution": [
+          {
+            "publisher_domain": "videoplatform.example",
+            "identifiers": [
+              {
+                "type": "youtube_channel_id",
+                "value": "UCgarden000001"
+              }
+            ]
+          }
+        ],
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wOFQwMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002exjS8U6Ihv0HHepZWConrPdqke0KbH70CVcJ6VDQv9L4s7HkGv3GjqcUhySNNu83X0abBPv9fTxe0jpPtNI2PCg"
+            },
+            "content_digest": "sha256:3cf0dbb24a8cf8085c2dac902d62676e55f9506005377799cc57bd10b9802496"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "subject_mismatch",
+        "network_requests": 0
+      }
+    },
+    {
       "name": "credential-without-status-url",
       "description": "The credential carries no status_url, so the evaluator makes no status request.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",
@@ -2954,6 +4285,7 @@
       "name": "anchor-not-evaluated-for-revoked-credential",
       "description": "A revoked credential has no anchor result, and the evaluator makes no anchor request.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
       "carrier": {
         "type": "social_profile",
         "identifier": "UCexample123456",

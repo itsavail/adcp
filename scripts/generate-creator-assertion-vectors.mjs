@@ -40,6 +40,7 @@ const PROFILE = {
 const SELLING_AGENT_URL = 'https://sales.novacreators.example/mcp';
 const BRAND_JSON_URL = 'https://novacreators.example/.well-known/brand.json';
 const JWKS_URL = 'https://novacreators.example/.well-known/jwks.json';
+const OTHER_JWKS_URL = 'https://novacreators.example/.well-known/jwks-sales.json';
 const CREDENTIAL_ID = 'ca_kitchen_lab_0001';
 const STATUS_URL = `https://novacreators.example/.well-known/adcp/status/${CREDENTIAL_ID}`;
 
@@ -140,7 +141,26 @@ function subjectFor(account) {
   };
 }
 
-function carrierFor(presentation, account, identifier = account.id) {
+function carrierFor(kind, presentation, account, identifier = account.id) {
+  if (kind === 'property') {
+    return {
+      property_type: 'social_profile',
+      name: 'Kitchen Lab with Jordan Vega',
+      identifiers: [{ type: account.type, value: identifier }],
+      attestations: [presentation],
+    };
+  }
+  if (kind === 'collection') {
+    return {
+      collection_id: 'kitchen_lab',
+      name: 'Kitchen Lab with Jordan Vega',
+      kind: 'series',
+      distribution: [
+        { publisher_domain: account.platformDomain, identifiers: [{ type: account.type, value: identifier }] },
+      ],
+      attestations: [presentation],
+    };
+  }
   return {
     type: 'social_profile',
     identifier,
@@ -410,6 +430,116 @@ const definitions = [
     expected: { outcome: 'invalid', network_requests: 2 },
   },
   {
+    name: 'reference-claim-type-is-not-this-profile',
+    description: 'The reference carries another claim type, so this profile does not apply.',
+    mutatePresentation(presentation) { presentation.claim_type = 'https://adcontextprotocol.org/claims/rights/grant'; },
+    expected: { outcome: 'unsupported', network_requests: 0 },
+  },
+  {
+    name: 'reference-subject-is-not-a-social-profile',
+    description: 'The reference subject has another resource type.',
+    mutatePresentation(presentation) {
+      presentation.subject = { ...presentation.subject, resource_type: 'https://adcontextprotocol.org/claims/subjects/rights-grant' };
+    },
+    expected: { outcome: 'unsupported', network_requests: 0 },
+  },
+  {
+    name: 'embedded-credential-format-is-not-this-profile',
+    description: 'The embedded credential names another proof format.',
+    mutatePresentation(presentation) { presentation.embedded_credential.format = 'https://formats.example/other'; },
+    expected: { outcome: 'unsupported', network_requests: 0 },
+  },
+  {
+    name: 'reference-without-content-digest',
+    description: 'The reference omits content_digest, which this profile requires.',
+    mutatePresentation(presentation) { delete presentation.content_digest; },
+    expected: { outcome: 'invalid', network_requests: 0 },
+  },
+  {
+    name: 'credential-alg-not-allowed',
+    description: 'The credential header names an algorithm this profile does not allow.',
+    mutateCredentialHeader(header) { header.alg = 'HS256'; },
+    expected: { outcome: 'invalid', network_requests: 0 },
+  },
+  {
+    name: 'brand-json-fetch-fails',
+    description: 'The request for the issuer\'s brand.json fails.',
+    network: { [BRAND_JSON_URL]: { status: 503 } },
+    expected: { outcome: 'unverifiable', network_requests: 1 },
+  },
+  {
+    name: 'jwks-fetch-fails',
+    description: 'The request for the selling agent\'s JWKS fails.',
+    network: { [JWKS_URL]: { status: 503 } },
+    expected: { outcome: 'unverifiable', network_requests: 2 },
+  },
+  {
+    name: 'key-is-in-another-agents-jwks',
+    description: 'The signing key is published by another sales agent of the same issuer. The selling agent\'s own JWKS does not hold it.',
+    network: {
+      [BRAND_JSON_URL]: json({
+        agents: [
+          { type: 'sales', id: 'novacreators_sales', url: SELLING_AGENT_URL, jwks_uri: OTHER_JWKS_URL },
+          { type: 'sales', id: 'novacreators_sales_two', url: 'https://sales-two.novacreators.example/mcp', jwks_uri: JWKS_URL },
+        ],
+      }),
+      [OTHER_JWKS_URL]: json({ keys: [{ ...PUBLISHED_KEY, kid: 'test-other-agent-2026', x: 'rkUcKP5oMd7YjV4yy5mVS5S8fA3LDXcf5jk1P1_52EA' }] }),
+    },
+    expected: { outcome: 'invalid', network_requests: 2 },
+  },
+  {
+    name: 'payload-issuer-differs-from-reference',
+    description: 'The signed payload names another issuer than the reference that carries it.',
+    mutateCredentialPayload(payload) { payload.issuer = { type: 'brand', brand: { domain: 'othernetwork.example' } }; },
+    expected: { outcome: 'invalid', network_requests: 2 },
+  },
+  {
+    name: 'verified-by-is-not-the-issuer',
+    description: 'evidence.verified_by names a party other than the issuer.',
+    mutateCredentialPayload(payload) { payload.evidence.verified_by = { domain: 'othernetwork.example' }; },
+    expected: { outcome: 'invalid', network_requests: 2 },
+  },
+  {
+    name: 'issued-at-in-the-future',
+    description: 'issued_at is more than 60 seconds after the evaluation time.',
+    mutateCredentialPayload(payload) { payload.issued_at = '2026-08-06T12:05:00Z'; },
+    expected: { outcome: 'invalid', network_requests: 2 },
+  },
+  {
+    name: 'status-signature-tampered',
+    description: 'The status signature does not verify.',
+    tamperStatus: true,
+    expected: { outcome: 'unverifiable', network_requests: 3 },
+  },
+  {
+    name: 'status-this-update-in-the-future',
+    description: 'The status this_update is more than 60 seconds after the evaluation time, so the status is not current.',
+    mutateStatusPayload(payload) {
+      payload.this_update = '2026-08-06T12:05:00Z';
+      payload.next_update = '2026-08-07T12:05:00Z';
+    },
+    expected: { outcome: 'unverifiable', network_requests: 3 },
+  },
+  {
+    name: 'credential-on-a-property',
+    description: 'The carrier is a core/property.json property. The subject names one of its identifiers.',
+    carrierKind: 'property',
+    expected: verified(3, 'absent'),
+  },
+  {
+    name: 'credential-on-a-collection',
+    description: 'The carrier is a collection. The subject names an identifier of the distribution entry for evidence.platform_domain.',
+    carrierKind: 'collection',
+    expected: verified(3, 'absent'),
+  },
+  {
+    name: 'credential-on-a-collection-that-lacks-the-account',
+    description: 'The carrier is a collection whose distribution entry names another channel.',
+    carrierKind: 'collection',
+    carrierIdentifier: OTHER_CHANNEL,
+    expected: { outcome: 'subject_mismatch', network_requests: 0 },
+  },
+  {
     name: 'credential-without-status-url',
     description: 'The credential carries no status_url, so the evaluator makes no status request.',
     omitStatusUrl: true,
@@ -446,17 +576,21 @@ function buildCase(definition) {
   const statusPayload = structuredClone(STATUS_PAYLOAD);
   definition.mutateStatusHeader?.(statusHeader);
   definition.mutateStatusPayload?.(statusPayload);
+  let status = compactJws(statusHeader, statusPayload);
+  if (definition.tamperStatus) status = tamperSignature(status);
+  const carrierKind = definition.carrierKind ?? 'brand_json_property';
 
   return {
     name: definition.name,
     description: definition.description,
     selling_agent_url: definition.sellingAgentUrl ?? SELLING_AGENT_URL,
-    carrier: carrierFor(presentation, account, definition.carrierIdentifier),
+    carrier_kind: carrierKind,
+    carrier: carrierFor(carrierKind, presentation, account, definition.carrierIdentifier),
     network: {
       [BRAND_JSON_URL]: json(BRAND_JSON),
       [JWKS_URL]: json({ keys: [PUBLISHED_KEY] }),
       ...(credentialPayload.status_url && {
-        [credentialPayload.status_url]: jose(compactJws(statusHeader, statusPayload)),
+        [credentialPayload.status_url]: jose(status),
       }),
       ...definition.network,
     },
@@ -475,7 +609,7 @@ const fixture = {
 
 // Escape compact-JWS separators in the JSON source so generic credential
 // scanners do not mistake these deliberately public test vectors for tokens.
-// JSON parsers decode . back to ".", preserving the byte-exact value.
+// A JSON parser decodes \\u002e back to a full stop, so the value stays byte-exact.
 const rendered = `${JSON.stringify(fixture, null, 2).replace(
   /"(eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)"/g,
   (_, jws) => `"${jws.replaceAll('.', '\\u002e')}"`,
