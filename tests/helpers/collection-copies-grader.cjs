@@ -49,7 +49,10 @@ const validate = {
 
 const CATALOG_FEATURE = 'media_buy.collection_catalog';
 const CARDS_FEATURE = 'media_buy.collection_cards';
-const CLOSED_LIST = ['images', 'sample_content', 'url', 'description', 'season', 'cadence'];
+const CLOSED_LIST = [
+  'images', 'sample_content', 'url', 'description', 'season', 'cadence',
+  'owner_authorizations', 'attestations',
+];
 const CARD_EVENTS = new Set(['collection_card.updated', 'collection_card.removed', 'collection_catalog.bulk_change']);
 
 const clone = value => JSON.parse(JSON.stringify(value));

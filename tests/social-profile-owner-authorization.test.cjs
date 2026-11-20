@@ -219,14 +219,14 @@ test('creator-assertion rejects an open-ended or mis-typed claim', async () => {
   }
 });
 
-test('creator-anchor accepts a profile text anchor and rejects other shapes', async () => {
+test('creator-anchor accepts a profile text anchor and stays open to other types', async () => {
   const schema = readSchema('/schemas/core/creator-anchor.json');
   const validate = await compile(schema);
   const [anchor] = schema.examples;
   assert.equal(validate(anchor), true, JSON.stringify(validate.errors));
+  assert.equal(validate({ type: 'domain_record', domain: 'kitchenlab.example' }), true, 'an unknown anchor type stays schema-valid');
   for (const bad of [
-    { type: 'email_alias', address: 'deals@kitchenlab.example' },
-    { type: 'trust_json', domain: 'jordanvega.example' },
+    { url: anchor.url, expected: anchor.expected },
     { type: 'platform_profile_text', url: anchor.url },
     { type: 'platform_profile_text', expected: anchor.expected },
     { ...anchor, url: 'http://videoplatform.example/channel/UCexample123456' },
@@ -297,4 +297,6 @@ test('a credential is bound to the selling agent\'s operator and to the account 
   assert.match(profile, /`tiktok_id`: `https:\/\/www\.tiktok\.com\/@` followed by `subject\.id`/);
   assert.match(profile, /`instagram_handle`: `https:\/\/www\.instagram\.com\/` followed by `subject\.id`/);
   assert.match(profile, /For an `instagram_account_id` subject the evaluator cannot check that the page belongs to the account/);
+  assert.match(profile, /`expected` MUST contain the issuer brand's domain/);
+  assert.match(profile, /`expires_at` MUST be no more than 7 days after `evidence\.verified_at`/);
 });

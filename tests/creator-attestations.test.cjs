@@ -24,6 +24,7 @@ const fixture = JSON.parse(fs.readFileSync(
 ));
 const { profile } = fixture;
 const CLOCK_SKEW_MS = 60_000;
+const MAX_LIFETIME_AFTER_CHECK_MS = 7 * 24 * 60 * 60 * 1000;
 const IDENTIFIER_TYPE_BASE = 'https://adcontextprotocol.org/identifier-types/';
 
 function readSchema(uri) {
@@ -139,6 +140,7 @@ function evaluate(testCase, now) {
     return result('invalid');
   }
   if (expiresAt <= now) return result('expired');
+  if (expiresAt - Date.parse(claim.evidence.verified_at) > MAX_LIFETIME_AFTER_CHECK_MS) return result('invalid');
 
   // 4. The signed status, when the credential carries a status_url.
   if (claim.status_url !== undefined) {
@@ -180,11 +182,11 @@ function evaluateAnchor(claim, request) {
   } catch {
     return 'unconfirmed';
   }
-  if (url.protocol !== 'https:' || registrableDomain(url.hostname) !== claim.evidence.platform_domain) {
-    return 'unconfirmed';
-  }
+  if (url.protocol !== 'https:') return 'unconfirmed';
   const prefix = fixture.profile_address_prefixes[claim.evidence.account.type];
-  if (prefix && withoutTrailingSlash(anchor.url) !== `${prefix}${claim.subject.id}`) return 'unconfirmed';
+  if (!prefix) return 'unconfirmed';
+  if (withoutTrailingSlash(anchor.url) !== `${prefix}${claim.subject.id.replace(/^@/, '')}`) return 'unconfirmed';
+  if (!anchor.expected.includes(claim.issuer.brand.domain)) return 'unconfirmed';
   const page = request(anchor.url);
   return typeof page === 'string' && page.includes(anchor.expected) ? 'confirmed' : 'unconfirmed';
 }

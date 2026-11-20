@@ -81,7 +81,7 @@ const CREDENTIAL_PAYLOAD = {
     verified_at: '2026-08-01T00:00:00Z',
   },
   issued_at: '2026-08-01T00:00:00Z',
-  expires_at: '2026-08-31T00:00:00Z',
+  expires_at: '2026-08-08T00:00:00Z',
   status_url: STATUS_URL,
 };
 
@@ -331,7 +331,7 @@ const definitions = [
   },
   {
     name: 'anchor-url-off-platform-domain',
-    description: 'The registrable domain of the anchor url is not evidence.platform_domain. It fails before any anchor request.',
+    description: 'The anchor url is on another domain, so it is not the profile address built from the identifier. It fails before any anchor request.',
     anchor: anchorAt(`https://www.othernetwork.example/channel/${SUBJECT.id}`),
     network: { [`https://www.othernetwork.example/channel/${SUBJECT.id}`]: profilePage(ANCHOR_TEXT) },
     expected: verified(3, 'unconfirmed'),
@@ -375,12 +375,39 @@ const definitions = [
     expected: verified(4, 'confirmed'),
   },
   {
-    name: 'anchor-confirmed-for-instagram-account-id',
-    description: 'An instagram_account_id subject. No profile address is built from the account ID, so only the platform domain and the page text are checked. The link between the page and the account is the operator\'s statement.',
+    name: 'anchor-unconfirmed-for-instagram-account-id',
+    description: 'An instagram_account_id subject. No profile address is built from the account ID, so the evaluator cannot tie the page to the account. The anchor is unconfirmed with no anchor request, even though the page contains the expected text.',
     account: PHOTO_ID_ACCOUNT,
     anchor: anchorAt(PHOTO_PROFILE_URL),
     network: { [PHOTO_PROFILE_URL]: profilePage(ANCHOR_TEXT) },
+    expected: verified(3, 'unconfirmed'),
+  },
+  {
+    name: 'anchor-text-does-not-name-the-issuer',
+    description: 'The expected text does not contain the issuer brand\'s domain. It fails before any anchor request, even though the page contains that text.',
+    anchor: { ...anchorAt(CHANNEL_PROFILE_URL), expected: 'Brand deals welcome' },
+    network: { [CHANNEL_PROFILE_URL]: profilePage('Brand deals welcome') },
+    expected: verified(3, 'unconfirmed'),
+  },
+  {
+    name: 'anchor-of-unknown-type',
+    description: 'The anchor is of a type this profile does not define. The credential stays verified and the anchor is unconfirmed.',
+    anchor: { type: 'domain_record', domain: 'kitchenlab.example' },
+    expected: verified(3, 'unconfirmed'),
+  },
+  {
+    name: 'anchor-confirmed-for-handle-with-at-sign',
+    description: 'An instagram_handle subject whose identifier carries a leading @. The @ is dropped when the profile address is built.',
+    account: { ...PHOTO_HANDLE_ACCOUNT, id: '@kitchenlab' },
+    anchor: anchorAt(PHOTO_PROFILE_URL),
+    network: { [PHOTO_PROFILE_URL]: profilePage(ANCHOR_TEXT) },
     expected: verified(4, 'confirmed'),
+  },
+  {
+    name: 'credential-outlives-its-evidence',
+    description: 'expires_at is more than 7 days after evidence.verified_at.',
+    mutateCredentialPayload(payload) { payload.expires_at = '2026-08-31T00:00:00Z'; },
+    expected: { outcome: 'invalid', network_requests: 2 },
   },
   {
     name: 'credential-without-status-url',

@@ -92,7 +92,7 @@
     "expires_at": {
       "type": "string",
       "format": "date-time",
-      "description": "When the claim stops being valid. It MUST be after issued_at. There is no credential without expires_at, so trust is never open-ended."
+      "description": "When the claim stops being valid. It MUST be after issued_at, and no more than 7 days after evidence.verified_at. So a credential never outlives the operator's last check of the account by more than 7 days."
     },
     "status_url": {
       "type": "string",
@@ -129,7 +129,7 @@
         "verified_at": "2026-10-20T14:05:00Z"
       },
       "issued_at": "2026-10-20T14:05:00Z",
-      "expires_at": "2026-11-19T14:05:00Z",
+      "expires_at": "2026-10-27T14:05:00Z",
       "status_url": "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001"
     }
   ]
