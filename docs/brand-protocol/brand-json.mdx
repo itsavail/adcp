@@ -1246,6 +1246,7 @@ Properties are digital touchpoints associated with brands:
 | `relationship` | enum | No | How this brand relates to the property: `owned` (default), `direct`, `delegated`, `ad_network`. Direct, delegated, and network values match `delegation_type` in adagents.json for bilateral verification; `owned` is a brand.json-only ownership claim. See [ad networks](/docs/sponsored-intelligence/networks). |
 | `identifier_type` | enum | When `type` is `social_profile` | Which kind of ID `identifier` holds, from the AdCP identifier-types enum. Required for `social_profile`, because account IDs from different platforms can collide. For `social_profile` it is one of `youtube_channel_id`, `tiktok_id`, `instagram_account_id` and `instagram_handle`. Experimental (`media_buy.social_profiles`). |
 | `owner_authorizations` | array | No | Operator-attested evidence that the account owner connected an operator to a `social_profile` account. See [platform OAuth evidence](/docs/media-buy/product-discovery/collections-and-installments#platform-oauth-evidence-experimental). Experimental (`media_buy.social_profiles`). |
+| `attestations` | array | No | Signed claims about the property, as portable attestation references. For a `social_profile` account, carries the operator's signed sales-authorization credential. See the [creator sales-authorization profile](/docs/building/by-layer/L1/security#creator-sales-authorization-profile-3-3-experimental). Experimental (`media_buy.social_profiles`). |
 
 ### Property types
 

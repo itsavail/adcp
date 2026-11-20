@@ -7,7 +7,7 @@
     "key": "A collection is keyed by (publisher_domain, collection_id).",
     "fixtures": "fixtures holds the declarations, seller_authorized and seller_catalog that a vector uses unless it carries its own.",
     "declarations": "declarations maps a publisher_domain to the collections array of that publisher's adagents.json. seller_authorized lists the collection selectors the grader resolved from that file's authorized_agents for the selling agent; resolving authorized_agents is outside these vectors. A selector without collection_ids covers every collection the publisher declares.",
-    "closed_list": "A verified copy wins over the declaration only on images, sample_content, url, description, season, cadence and distribution[].followers. A copy that omits one of those fields leaves the declared value. Every other field comes from the declaration.",
+    "closed_list": "A verified copy wins over the declaration only on images, sample_content, url, description, season, cadence, distribution[].followers, owner_authorizations and attestations (the last two are experimental, media_buy.social_profiles). A copy that omits one of those fields leaves the declared value. Every other field comes from the declaration.",
     "followers": "A copy's distribution entry corresponds to the declared entry with the same publisher_domain; when several declared entries share it, to the one with the same identifiers set. A copy's followers replace only the corresponding declared entry's followers. Copy distribution entries with no corresponding declared entry are ignored, and declared entries the copy omits keep their followers.",
     "merged_status": "verified: one copy, declared, and the seller authorized; effective is the declaration overlaid with the closed list. unverified: one copy that is undeclared or from an unauthorized seller; effective is null and display is the copy as served. unresolvable: more than one copy for the key; effective is the declaration. fallback: no copy; effective is the declaration. unknown: no copy and no declaration. display is what a buyer may show: the copy for unverified, effective otherwise. carriage_eligible is true only when the key is declared, because carriage verification reads distribution only from the declaration. effective carries publisher_domain so it has the same shape as a copy.",
     "keys": "keys are the collections the buyer resolves: those referenced by returned products for include_collections, or those it requested or received for list_collections. Copies for other keys are strays and are ignored.",
@@ -566,6 +566,331 @@
                 }
               ],
               "season": "4"
+            },
+            "carriage_eligible": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "copy-supplies-operator-evidence",
+      "case": "merged_view",
+      "name": "A copy's owner_authorizations and attestations are the selling agent's own statements, so they come from the copy",
+      "spec_reference": "/docs/media-buy/product-discovery/collections-and-installments#collections-in-responses",
+      "read": "include_collections",
+      "seller_agent_url": "https://sales.pinnaclemedia.example",
+      "keys": [
+        {
+          "publisher_domain": "novacreators.example",
+          "collection_id": "kitchen_lab"
+        }
+      ],
+      "copies": [
+        {
+          "publisher_domain": "novacreators.example",
+          "collection_id": "kitchen_lab",
+          "name": "Kitchen Lab with Jordan Vega",
+          "kind": "series",
+          "status": "active",
+          "language": "en",
+          "genre": [
+            "IAB1-8"
+          ],
+          "genre_taxonomy": "iab_content_3.0",
+          "cadence": "weekly",
+          "images": [
+            {
+              "asset_type": "image",
+              "url": "https://cdn.novacreators.example/kitchen-lab/avatar-v1.jpg",
+              "width": 400,
+              "height": 400
+            }
+          ],
+          "talent": [
+            {
+              "role": "creator",
+              "name": "Jordan Vega",
+              "brand_ref": {
+                "domain": "jordanvega.example"
+              }
+            }
+          ],
+          "distribution": [
+            {
+              "publisher_domain": "videoplatform.example",
+              "identifiers": [
+                {
+                  "type": "youtube_channel_id",
+                  "value": "UCexample123456"
+                }
+              ],
+              "followers": {
+                "lower_bound": 1200000,
+                "upper_bound": 1209999,
+                "precision": "approximate",
+                "as_of": "2026-09-01T00:00:00Z"
+              }
+            },
+            {
+              "publisher_domain": "shortsapp.example",
+              "identifiers": [
+                {
+                  "type": "tiktok_id",
+                  "value": "kitchenlab"
+                }
+              ],
+              "followers": {
+                "lower_bound": 450000,
+                "upper_bound": 459999,
+                "precision": "approximate",
+                "as_of": "2026-09-01T00:00:00Z"
+              }
+            }
+          ],
+          "season": "4",
+          "owner_authorizations": [
+            {
+              "method": "platform_oauth",
+              "platform_domain": "videoplatform.example",
+              "account": {
+                "type": "youtube_channel_id",
+                "value": "UCexample123456"
+              },
+              "verified_by": {
+                "domain": "pinnaclemedia.example"
+              },
+              "verified_at": "2026-09-01T00:00:00Z"
+            }
+          ],
+          "attestations": [
+            {
+              "issuer": {
+                "type": "brand",
+                "brand": {
+                  "domain": "pinnaclemedia.example"
+                }
+              },
+              "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+              "subject": {
+                "type": "resource",
+                "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+                "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+                "id": "UCexample123456"
+              },
+              "embedded_credential": {
+                "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+                "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl9waW5uYWNsZV8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6InBpbm5hY2xlbWVkaWEuZXhhbXBsZSJ9fSwic3ViamVjdCI6eyJ0eXBlIjoicmVzb3VyY2UiLCJyZXNvdXJjZV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL3N1YmplY3RzL3NvY2lhbC1wcm9maWxlIiwibmFtZXNwYWNlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvaWRlbnRpZmllci10eXBlcy95b3V0dWJlX2NoYW5uZWxfaWQiLCJpZCI6IlVDZXhhbXBsZTEyMzQ1NiJ9LCJ2YWx1ZSI6eyJzY29wZSI6WyJzYWxlc19hdXRob3JpemF0aW9uIl0sInNlbGxlciI6eyJkb21haW4iOiJwaW5uYWNsZW1lZGlhLmV4YW1wbGUifX0sImV2aWRlbmNlIjp7Im1ldGhvZCI6InBsYXRmb3JtX29hdXRoIiwicGxhdGZvcm1fZG9tYWluIjoidmlkZW9wbGF0Zm9ybS5leGFtcGxlIiwiYWNjb3VudCI6eyJ0eXBlIjoieW91dHViZV9jaGFubmVsX2lkIiwidmFsdWUiOiJVQ2V4YW1wbGUxMjM0NTYifSwidmVyaWZpZWRfYnkiOnsiZG9tYWluIjoicGlubmFjbGVtZWRpYS5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOS0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOS0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOS0wOFQwMDowMDowMFoifQ\u002eO8sCWV58kG4lj3a9LfGTmShTfidoFt-mXg8GSDPxP7WKEgdlOWkYO-wI1bzvNQwlXaOtzhKIQdOgSoRbMZKBBg"
+              },
+              "content_digest": "sha256:2db603afc0faa8f72d050177ee8b460eb1023405d66dcd6d8b1c93055aa74b95"
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "cards": [
+          {
+            "publisher_domain": "novacreators.example",
+            "collection_id": "kitchen_lab",
+            "status": "verified",
+            "effective": {
+              "publisher_domain": "novacreators.example",
+              "collection_id": "kitchen_lab",
+              "name": "Kitchen Lab with Jordan Vega",
+              "kind": "series",
+              "status": "active",
+              "language": "en",
+              "genre": [
+                "IAB1-8"
+              ],
+              "genre_taxonomy": "iab_content_3.0",
+              "cadence": "weekly",
+              "description": "Food science for home cooks",
+              "images": [
+                {
+                  "asset_type": "image",
+                  "url": "https://cdn.novacreators.example/kitchen-lab/avatar-v1.jpg",
+                  "width": 400,
+                  "height": 400
+                }
+              ],
+              "talent": [
+                {
+                  "role": "creator",
+                  "name": "Jordan Vega",
+                  "brand_ref": {
+                    "domain": "jordanvega.example"
+                  }
+                }
+              ],
+              "distribution": [
+                {
+                  "publisher_domain": "videoplatform.example",
+                  "identifiers": [
+                    {
+                      "type": "youtube_channel_id",
+                      "value": "UCexample123456"
+                    }
+                  ],
+                  "followers": {
+                    "lower_bound": 1200000,
+                    "upper_bound": 1209999,
+                    "precision": "approximate",
+                    "as_of": "2026-09-01T00:00:00Z"
+                  }
+                },
+                {
+                  "publisher_domain": "shortsapp.example",
+                  "identifiers": [
+                    {
+                      "type": "tiktok_id",
+                      "value": "kitchenlab"
+                    }
+                  ],
+                  "followers": {
+                    "lower_bound": 450000,
+                    "upper_bound": 459999,
+                    "precision": "approximate",
+                    "as_of": "2026-09-01T00:00:00Z"
+                  }
+                }
+              ],
+              "season": "4",
+              "owner_authorizations": [
+                {
+                  "method": "platform_oauth",
+                  "platform_domain": "videoplatform.example",
+                  "account": {
+                    "type": "youtube_channel_id",
+                    "value": "UCexample123456"
+                  },
+                  "verified_by": {
+                    "domain": "pinnaclemedia.example"
+                  },
+                  "verified_at": "2026-09-01T00:00:00Z"
+                }
+              ],
+              "attestations": [
+                {
+                  "issuer": {
+                    "type": "brand",
+                    "brand": {
+                      "domain": "pinnaclemedia.example"
+                    }
+                  },
+                  "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+                  "subject": {
+                    "type": "resource",
+                    "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+                    "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+                    "id": "UCexample123456"
+                  },
+                  "embedded_credential": {
+                    "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+                    "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl9waW5uYWNsZV8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6InBpbm5hY2xlbWVkaWEuZXhhbXBsZSJ9fSwic3ViamVjdCI6eyJ0eXBlIjoicmVzb3VyY2UiLCJyZXNvdXJjZV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL3N1YmplY3RzL3NvY2lhbC1wcm9maWxlIiwibmFtZXNwYWNlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvaWRlbnRpZmllci10eXBlcy95b3V0dWJlX2NoYW5uZWxfaWQiLCJpZCI6IlVDZXhhbXBsZTEyMzQ1NiJ9LCJ2YWx1ZSI6eyJzY29wZSI6WyJzYWxlc19hdXRob3JpemF0aW9uIl0sInNlbGxlciI6eyJkb21haW4iOiJwaW5uYWNsZW1lZGlhLmV4YW1wbGUifX0sImV2aWRlbmNlIjp7Im1ldGhvZCI6InBsYXRmb3JtX29hdXRoIiwicGxhdGZvcm1fZG9tYWluIjoidmlkZW9wbGF0Zm9ybS5leGFtcGxlIiwiYWNjb3VudCI6eyJ0eXBlIjoieW91dHViZV9jaGFubmVsX2lkIiwidmFsdWUiOiJVQ2V4YW1wbGUxMjM0NTYifSwidmVyaWZpZWRfYnkiOnsiZG9tYWluIjoicGlubmFjbGVtZWRpYS5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOS0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOS0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOS0wOFQwMDowMDowMFoifQ\u002eO8sCWV58kG4lj3a9LfGTmShTfidoFt-mXg8GSDPxP7WKEgdlOWkYO-wI1bzvNQwlXaOtzhKIQdOgSoRbMZKBBg"
+                  },
+                  "content_digest": "sha256:2db603afc0faa8f72d050177ee8b460eb1023405d66dcd6d8b1c93055aa74b95"
+                }
+              ]
+            },
+            "display": {
+              "publisher_domain": "novacreators.example",
+              "collection_id": "kitchen_lab",
+              "name": "Kitchen Lab with Jordan Vega",
+              "kind": "series",
+              "status": "active",
+              "language": "en",
+              "genre": [
+                "IAB1-8"
+              ],
+              "genre_taxonomy": "iab_content_3.0",
+              "cadence": "weekly",
+              "description": "Food science for home cooks",
+              "images": [
+                {
+                  "asset_type": "image",
+                  "url": "https://cdn.novacreators.example/kitchen-lab/avatar-v1.jpg",
+                  "width": 400,
+                  "height": 400
+                }
+              ],
+              "talent": [
+                {
+                  "role": "creator",
+                  "name": "Jordan Vega",
+                  "brand_ref": {
+                    "domain": "jordanvega.example"
+                  }
+                }
+              ],
+              "distribution": [
+                {
+                  "publisher_domain": "videoplatform.example",
+                  "identifiers": [
+                    {
+                      "type": "youtube_channel_id",
+                      "value": "UCexample123456"
+                    }
+                  ],
+                  "followers": {
+                    "lower_bound": 1200000,
+                    "upper_bound": 1209999,
+                    "precision": "approximate",
+                    "as_of": "2026-09-01T00:00:00Z"
+                  }
+                },
+                {
+                  "publisher_domain": "shortsapp.example",
+                  "identifiers": [
+                    {
+                      "type": "tiktok_id",
+                      "value": "kitchenlab"
+                    }
+                  ],
+                  "followers": {
+                    "lower_bound": 450000,
+                    "upper_bound": 459999,
+                    "precision": "approximate",
+                    "as_of": "2026-09-01T00:00:00Z"
+                  }
+                }
+              ],
+              "season": "4",
+              "owner_authorizations": [
+                {
+                  "method": "platform_oauth",
+                  "platform_domain": "videoplatform.example",
+                  "account": {
+                    "type": "youtube_channel_id",
+                    "value": "UCexample123456"
+                  },
+                  "verified_by": {
+                    "domain": "pinnaclemedia.example"
+                  },
+                  "verified_at": "2026-09-01T00:00:00Z"
+                }
+              ],
+              "attestations": [
+                {
+                  "issuer": {
+                    "type": "brand",
+                    "brand": {
+                      "domain": "pinnaclemedia.example"
+                    }
+                  },
+                  "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+                  "subject": {
+                    "type": "resource",
+                    "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+                    "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+                    "id": "UCexample123456"
+                  },
+                  "embedded_credential": {
+                    "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+                    "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl9waW5uYWNsZV8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6InBpbm5hY2xlbWVkaWEuZXhhbXBsZSJ9fSwic3ViamVjdCI6eyJ0eXBlIjoicmVzb3VyY2UiLCJyZXNvdXJjZV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL3N1YmplY3RzL3NvY2lhbC1wcm9maWxlIiwibmFtZXNwYWNlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvaWRlbnRpZmllci10eXBlcy95b3V0dWJlX2NoYW5uZWxfaWQiLCJpZCI6IlVDZXhhbXBsZTEyMzQ1NiJ9LCJ2YWx1ZSI6eyJzY29wZSI6WyJzYWxlc19hdXRob3JpemF0aW9uIl0sInNlbGxlciI6eyJkb21haW4iOiJwaW5uYWNsZW1lZGlhLmV4YW1wbGUifX0sImV2aWRlbmNlIjp7Im1ldGhvZCI6InBsYXRmb3JtX29hdXRoIiwicGxhdGZvcm1fZG9tYWluIjoidmlkZW9wbGF0Zm9ybS5leGFtcGxlIiwiYWNjb3VudCI6eyJ0eXBlIjoieW91dHViZV9jaGFubmVsX2lkIiwidmFsdWUiOiJVQ2V4YW1wbGUxMjM0NTYifSwidmVyaWZpZWRfYnkiOnsiZG9tYWluIjoicGlubmFjbGVtZWRpYS5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOS0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOS0wMVQwMDowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOS0wOFQwMDowMDowMFoifQ\u002eO8sCWV58kG4lj3a9LfGTmShTfidoFt-mXg8GSDPxP7WKEgdlOWkYO-wI1bzvNQwlXaOtzhKIQdOgSoRbMZKBBg"
+                  },
+                  "content_digest": "sha256:2db603afc0faa8f72d050177ee8b460eb1023405d66dcd6d8b1c93055aa74b95"
+                }
+              ]
             },
             "carriage_eligible": true
           }

@@ -397,11 +397,11 @@ test('response collections descriptions carry the opt-in and the closed freshnes
   for (const file of ['list-products', 'request-proposals', 'refine-proposals']) {
     const desc = read(`media-buy/${file}-response.json`).properties.collections.description;
     assert.match(desc, /unless the request set include_collections to true/, file);
-    assert.match(desc, /only on images, sample_content, url, description, season, cadence, distribution\[\]\.followers and owner_authorizations/, file);
+    assert.match(desc, /only on images, sample_content, url, description, season, cadence, distribution\[\]\.followers, owner_authorizations and attestations/, file);
     assert.match(desc, /appears more than once, that collection is unresolvable/, file);
   }
   const item = read('core/response-collection.json').description;
-  assert.match(item, /only on images, sample_content, url, description, season, cadence, distribution\[\]\.followers and owner_authorizations/);
+  assert.match(item, /only on images, sample_content, url, description, season, cadence, distribution\[\]\.followers, owner_authorizations and attestations/);
   assert.doesNotMatch(item, /such as images, sample_content, status and talent/);
   assert.match(item, /unverified display data/);
 });

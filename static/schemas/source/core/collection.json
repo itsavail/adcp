@@ -124,6 +124,16 @@
       "x-status": "experimental",
       "x-added-in": "3.3.0"
     },
+    "attestations": {
+      "type": "array",
+      "description": "Experimental (media_buy.social_profiles). Signed claims about this collection, each a portable attestation reference (core/attestation-reference.json). A buyer evaluates each reference under the portable-attestation procedure in the security documentation. A reference that is present but not verified proves nothing. For the creator sales-authorization claim type, the credential's subject MUST name an identifier on this collection's distribution, or the evaluation is subject_mismatch. A verified credential makes the account operator-attested. A verified creator anchor as well makes it mutually attested.",
+      "minItems": 1,
+      "items": {
+        "$ref": "/schemas/core/attestation-reference.json"
+      },
+      "x-status": "experimental",
+      "x-added-in": "3.3.0"
+    },
     "deadline_policy": {
       "$ref": "/schemas/core/deadline-policy.json",
       "description": "Default deadline rules for installments of this collection. Agents compute absolute deadlines from each installment's scheduled_at and these lead times. Installments with explicit deadlines override this policy. Only meaningful when installments carry scheduled_at; a continuously programmed channel collection without enumerated installments has no deadlines to derive."

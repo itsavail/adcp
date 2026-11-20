@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/core/creator-assertion.json",
+  "title": "Creator Assertion",
+  "x-status": "experimental",
+  "x-added-in": "3.3.0",
+  "description": "Experimental (media_buy.social_profiles). Payload of a creator sales-authorization credential. The issuer states that the seller it names may sell advertising on the platform account in subject. It travels JWS-signed as the embedded_credential of a core/attestation-reference.json. A buyer verifies it under the creator sales-authorization profile in the security documentation. The credential is visibly self-asserted. It is the operator's own statement about its own roster, and the issuer is always named. Without a verified anchor the claim is operator-attested. With one it is mutually attested. A seller serving or relaying it MUST list media_buy.social_profiles in experimental_features on get_adcp_capabilities.",
+  "type": "object",
+  "properties": {
+    "claim_type": {
+      "type": "string",
+      "const": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+      "description": "Claim vocabulary. It MUST equal the claim_type of the attestation reference that carries this credential."
+    },
+    "credential_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9._:-]+$",
+      "description": "Issuer-unique identifier that status_url answers for. A reissued credential, including the one an issuer issues when a paused claim resumes, carries a new credential_id.",
+      "x-entity": "attestation_credential"
+    },
+    "issuer": {
+      "description": "The party making the claim. It is a brand issuer whose domain is the selling agent's operator, the registrable domain of the selling agent's host. A buyer derives that domain from the agent URL and never takes it from the presentation. It MUST equal the reference's issuer. Its brand.json supplies the verification key.",
+      "allOf": [
+        { "$ref": "/schemas/core/attestation-issuer.json" },
+        { "type": "object", "properties": { "type": { "const": "brand" } }, "required": ["type"] }
+      ]
+    },
+    "subject": {
+      "description": "The platform account the claim is about. It MUST equal the reference's subject. It MUST name an identifier of the property or collection that carries the reference, or the evaluation is subject_mismatch.",
+      "allOf": [
+        { "$ref": "/schemas/core/attestation-subject.json" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "resource" },
+            "resource_type": {
+              "type": "string",
+              "const": "https://adcontextprotocol.org/claims/subjects/social-profile"
+            },
+            "namespace": {
+              "type": "string",
+              "enum": [
+                "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+                "https://adcontextprotocol.org/identifier-types/tiktok_id",
+                "https://adcontextprotocol.org/identifier-types/instagram_account_id",
+                "https://adcontextprotocol.org/identifier-types/instagram_handle"
+              ],
+              "description": "The prefix https://adcontextprotocol.org/identifier-types/ followed by the account's identifier type, for example youtube_channel_id."
+            }
+          },
+          "required": ["type", "resource_type", "namespace"]
+        }
+      ]
+    },
+    "value": {
+      "type": "object",
+      "description": "What the claim authorizes.",
+      "properties": {
+        "scope": {
+          "type": "array",
+          "description": "Activities the claim covers. sales_authorization: the seller may sell advertising on the account.",
+          "items": {
+            "type": "string",
+            "enum": ["sales_authorization"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "seller": {
+          "$ref": "/schemas/core/brand-ref.json",
+          "description": "The seller the claim authorizes. It MUST equal the issuer brand, so a buyer compares one party with the selling agent's operator, not two."
+        }
+      },
+      "required": ["scope", "seller"],
+      "additionalProperties": true
+    },
+    "evidence": {
+      "$ref": "/schemas/core/owner-authorization.json",
+      "description": "How the issuer holds the account owner's authorization (core/owner-authorization.json). Its account MUST match subject (the same identifier type and account ID), and its verified_by MUST equal the issuer brand."
+    },
+    "anchor": {
+      "$ref": "/schemas/core/creator-anchor.json",
+      "description": "Recommended, not required. A place the creator controls that confirms the claim. The evaluator checks it with its own request and never relies on the issuer's statement that it holds."
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the issuer made the claim."
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the claim stops being valid. It MUST be after issued_at, and no more than 7 days after evidence.verified_at. So a credential never outlives the operator's last check of the account by more than 7 days."
+    },
+    "status_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Optional. HTTPS URL that answers with a signed core/creator-assertion-status.json for this credential. When present, the evaluator checks it before relying on the credential, so a withdrawn claim stops verifying before expires_at. Without it, a buyer SHOULD read the credential fresh from the selling agent before relying on it. Its host MUST be the issuer brand's domain or a subdomain of it. The evaluator checks the host before DNS resolution. Any other host yields unverifiable with no request."
+    },
+    "ext": {
+      "$ref": "/schemas/core/ext.json"
+    }
+  },
+  "required": ["claim_type", "credential_id", "issuer", "subject", "value", "evidence", "issued_at", "expires_at"],
+  "additionalProperties": true,
+  "examples": [
+    {
+      "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+      "credential_id": "ca_kitchen_lab_0001",
+      "issuer": { "type": "brand", "brand": { "domain": "novacreators.example" } },
+      "subject": {
+        "type": "resource",
+        "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+        "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+        "id": "UCexample123456"
+      },
+      "value": {
+        "scope": ["sales_authorization"],
+        "seller": { "domain": "novacreators.example" }
+      },
+      "evidence": {
+        "method": "platform_oauth",
+        "platform_domain": "videoplatform.example",
+        "account": { "type": "youtube_channel_id", "value": "UCexample123456" },
+        "verified_by": { "domain": "novacreators.example" },
+        "verified_at": "2026-10-20T14:05:00Z"
+      },
+      "issued_at": "2026-10-20T14:05:00Z",
+      "expires_at": "2026-10-27T14:05:00Z",
+      "status_url": "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001"
+    }
+  ]
+}
