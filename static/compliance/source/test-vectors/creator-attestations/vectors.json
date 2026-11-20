@@ -97,7 +97,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "absent"
+        "anchor": "absent",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -1764,7 +1766,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "confirmed"
+        "anchor": "confirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -1853,7 +1857,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "confirmed"
+        "anchor": "confirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -1942,7 +1948,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2031,7 +2039,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2120,7 +2130,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2207,7 +2219,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2296,7 +2310,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "confirmed"
+        "anchor": "confirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2385,7 +2401,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2474,7 +2492,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "confirmed"
+        "anchor": "confirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2563,7 +2583,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2652,7 +2674,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2736,7 +2760,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "unconfirmed"
+        "anchor": "unconfirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -2825,7 +2851,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "confirmed"
+        "anchor": "confirmed",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -3695,6 +3723,85 @@
       }
     },
     {
+      "name": "expires-at-before-issued-at",
+      "description": "expires_at is before issued_at. The credential is invalid, not expired.",
+      "selling_agent_url": "https://sales.novacreators.example/mcp",
+      "carrier_kind": "brand_json_property",
+      "carrier": {
+        "type": "social_profile",
+        "identifier": "UCexample123456",
+        "identifier_type": "youtube_channel_id",
+        "relationship": "delegated",
+        "attestations": [
+          {
+            "issuer": {
+              "type": "brand",
+              "brand": {
+                "domain": "novacreators.example"
+              }
+            },
+            "claim_type": "https://adcontextprotocol.org/claims/creator/sales-authorization",
+            "subject": {
+              "type": "resource",
+              "resource_type": "https://adcontextprotocol.org/claims/subjects/social-profile",
+              "namespace": "https://adcontextprotocol.org/identifier-types/youtube_channel_id",
+              "id": "UCexample123456"
+            },
+            "embedded_credential": {
+              "format": "https://adcontextprotocol.org/proof-formats/creator-assertion-jws",
+              "value": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24randzIiwia2lkIjoidGVzdC1jcmVhdG9yLWF0dGVzdGF0aW9uLTIwMjYifQ\u002eeyJjbGFpbV90eXBlIjoiaHR0cHM6Ly9hZGNvbnRleHRwcm90b2NvbC5vcmcvY2xhaW1zL2NyZWF0b3Ivc2FsZXMtYXV0aG9yaXphdGlvbiIsImNyZWRlbnRpYWxfaWQiOiJjYV9raXRjaGVuX2xhYl8wMDAxIiwiaXNzdWVyIjp7InR5cGUiOiJicmFuZCIsImJyYW5kIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJzdWJqZWN0Ijp7InR5cGUiOiJyZXNvdXJjZSIsInJlc291cmNlX3R5cGUiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9jbGFpbXMvc3ViamVjdHMvc29jaWFsLXByb2ZpbGUiLCJuYW1lc3BhY2UiOiJodHRwczovL2FkY29udGV4dHByb3RvY29sLm9yZy9pZGVudGlmaWVyLXR5cGVzL3lvdXR1YmVfY2hhbm5lbF9pZCIsImlkIjoiVUNleGFtcGxlMTIzNDU2In0sInZhbHVlIjp7InNjb3BlIjpbInNhbGVzX2F1dGhvcml6YXRpb24iXSwic2VsbGVyIjp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn19LCJldmlkZW5jZSI6eyJtZXRob2QiOiJwbGF0Zm9ybV9vYXV0aCIsInBsYXRmb3JtX2RvbWFpbiI6InZpZGVvcGxhdGZvcm0uZXhhbXBsZSIsImFjY291bnQiOnsidHlwZSI6InlvdXR1YmVfY2hhbm5lbF9pZCIsInZhbHVlIjoiVUNleGFtcGxlMTIzNDU2In0sInZlcmlmaWVkX2J5Ijp7ImRvbWFpbiI6Im5vdmFjcmVhdG9ycy5leGFtcGxlIn0sInZlcmlmaWVkX2F0IjoiMjAyNi0wOC0wMVQwMDowMDowMFoifSwiaXNzdWVkX2F0IjoiMjAyNi0wOC0wNlQxMTowMDowMFoiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0wNlQxMDowMDowMFoiLCJzdGF0dXNfdXJsIjoiaHR0cHM6Ly9ub3ZhY3JlYXRvcnMuZXhhbXBsZS8ud2VsbC1rbm93bi9hZGNwL3N0YXR1cy9jYV9raXRjaGVuX2xhYl8wMDAxIn0\u002eRXHfKz5-DDAOz0FDhxeAGoeu_VnuOvVv7PlUzaZMsBiMzUgw2qoc6uRmFWB5SX4lCElwr8NssrYWJ_GC-FBOAw"
+            },
+            "content_digest": "sha256:3ef95da63df8419e3f7b04a4507be14940d75820c6e4de76d7ec7c58c303b28b"
+          }
+        ]
+      },
+      "network": {
+        "https://novacreators.example/.well-known/brand.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "agents": [
+              {
+                "type": "sales",
+                "id": "novacreators_sales",
+                "url": "https://sales.novacreators.example/mcp",
+                "jwks_uri": "https://novacreators.example/.well-known/jwks.json"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/jwks.json": {
+          "status": 200,
+          "content_type": "application/json",
+          "body": {
+            "keys": [
+              {
+                "kid": "test-creator-attestation-2026",
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "alg": "EdDSA",
+                "use": "sig",
+                "key_ops": [
+                  "verify"
+                ],
+                "adcp_use": "attestation-signing",
+                "x": "Ne1qtVx81mXSnjIMlpXudsQLtmoFcERQx9_ljMaq1_k"
+              }
+            ]
+          }
+        },
+        "https://novacreators.example/.well-known/adcp/status/ca_kitchen_lab_0001": {
+          "status": 200,
+          "content_type": "application/jose",
+          "body": "eyJhbGciOiJFZERTQSIsInR5cCI6ImFkY3AtY3JlYXRvci1hc3NlcnRpb24tc3RhdHVzK2p3cyIsImtpZCI6InRlc3QtY3JlYXRvci1hdHRlc3RhdGlvbi0yMDI2In0\u002eeyJjcmVkZW50aWFsX2lkIjoiY2Ffa2l0Y2hlbl9sYWJfMDAwMSIsInN0YXR1cyI6ImFjdGl2ZSIsInRoaXNfdXBkYXRlIjoiMjAyNi0wOC0wNlQxMTo1NTowMFoiLCJuZXh0X3VwZGF0ZSI6IjIwMjYtMDgtMDdUMTE6NTU6MDBaIn0\u002etEcdrsHaH0YC1VeuZPeAj-WUo5b4DuSZ59CoLC695eARJzLuU2vcuCk8isQsl3p6m9Xp-EawcSdIJSNAoGWxCw"
+        }
+      },
+      "expected": {
+        "outcome": "invalid",
+        "network_requests": 2
+      }
+    },
+    {
       "name": "issued-at-in-the-future",
       "description": "issued_at is more than 60 seconds after the evaluation time.",
       "selling_agent_url": "https://sales.novacreators.example/mcp",
@@ -4016,7 +4123,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "absent"
+        "anchor": "absent",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -4110,7 +4219,9 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "absent"
+        "anchor": "absent",
+        "valid_until": "2026-08-07T11:55:00Z",
+        "revocation_checked_at": "2026-08-06T12:00:00Z"
       }
     },
     {
@@ -4278,7 +4389,8 @@
           "action_type": "https://adcontextprotocol.org/actions/creator-sales-authorization-evaluation",
           "action_id": "https://sales.novacreators.example/mcp"
         },
-        "anchor": "absent"
+        "anchor": "absent",
+        "valid_until": "2026-08-08T00:00:00Z"
       }
     },
     {

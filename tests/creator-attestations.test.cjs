@@ -87,13 +87,15 @@ function evaluate(testCase, now) {
   if (!Number.isFinite(issuedAt) || !Number.isFinite(expiresAt) || issuedAt > now + CLOCK_SKEW_MS) {
     return result('invalid');
   }
+  if (expiresAt <= issuedAt) return result('invalid');
   if (expiresAt <= now) return result('expired');
   if (!Number.isFinite(verifiedAt) || expiresAt - verifiedAt > MAX_LIFETIME_AFTER_CHECK_MS) return result('invalid');
 
   // Step 4 runs only when the credential carries a status_url.
+  let status = null;
   if (claim.status_url !== undefined) {
-    const statusOutcome = evaluateStatus(claim, issuerBrand, jwks, network, now);
-    if (statusOutcome) return result(statusOutcome);
+    status = evaluateStatus(claim, issuerBrand, jwks, network, now);
+    if (status.outcome) return result(status.outcome);
   }
 
   // The anchor is evaluated only for a verified credential.
@@ -102,6 +104,8 @@ function evaluate(testCase, now) {
     ...result('verified'),
     action_binding: { action_type: profile.action_type, action_id: agentUrl },
     anchor,
+    valid_until: status && Date.parse(status.nextUpdate) < expiresAt ? status.nextUpdate : claim.expires_at,
+    ...(status && { revocation_checked_at: fixture.evaluation_time }),
   };
 }
 
@@ -130,25 +134,24 @@ function carrierNames(testCase, subject, claim) {
   ));
 }
 
-// Returns the failing outcome, or null when the signed status is current and active.
+// Returns the failing outcome, or the next_update of a signed status that is current and active.
 function evaluateStatus(claim, issuerBrand, jwks, network, now) {
+  const unverifiable = { outcome: 'unverifiable' };
   let statusUrl;
   try {
     statusUrl = new URL(claim.status_url);
   } catch {
-    return 'unverifiable';
+    return unverifiable;
   }
-  if (statusUrl.protocol !== 'https:' || !onDomain(statusUrl.hostname, issuerBrand.domain)) return 'unverifiable';
+  if (statusUrl.protocol !== 'https:' || !onDomain(statusUrl.hostname, issuerBrand.domain)) return unverifiable;
   const status = decodeJws(request(network, claim.status_url));
-  if (!status || status.header.typ !== profile.status_typ || !verifyWith(jwks, status)) {
-    return 'unverifiable';
-  }
-  if (status.payload.credential_id !== claim.credential_id) return 'unverifiable';
+  if (!status || status.header.typ !== profile.status_typ || !verifyWith(jwks, status)) return unverifiable;
+  if (status.payload.credential_id !== claim.credential_id) return unverifiable;
   const thisUpdate = Date.parse(status.payload.this_update);
   const nextUpdate = Date.parse(status.payload.next_update);
-  if (!(thisUpdate <= now + CLOCK_SKEW_MS && nextUpdate > now)) return 'unverifiable';
-  if (status.payload.status === 'active') return null;
-  return REVOKING_STATUSES.includes(status.payload.status) ? 'revoked' : 'unverifiable';
+  if (!(thisUpdate <= now + CLOCK_SKEW_MS && nextUpdate > now)) return unverifiable;
+  if (status.payload.status === 'active') return { nextUpdate: status.payload.next_update };
+  return REVOKING_STATUSES.includes(status.payload.status) ? { outcome: 'revoked' } : unverifiable;
 }
 
 function evaluateAnchor(claim, network) {
@@ -195,16 +198,25 @@ function decodeJws(compact) {
   if (typeof compact !== 'string') return null;
   const parts = compact.split('.');
   if (parts.length !== 3) return null;
+  let header;
+  let payload;
   try {
-    return {
-      header: JSON.parse(Buffer.from(parts[0], 'base64url').toString('utf8')),
-      payload: JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8')),
-      signingInput: `${parts[0]}.${parts[1]}`,
-      signature: Buffer.from(parts[2], 'base64url'),
-    };
+    header = JSON.parse(Buffer.from(parts[0], 'base64url').toString('utf8'));
+    payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'));
   } catch {
     return null;
   }
+  if (!isJsonObject(header) || !isJsonObject(payload)) return null;
+  return {
+    header,
+    payload,
+    signingInput: `${parts[0]}.${parts[1]}`,
+    signature: Buffer.from(parts[2], 'base64url'),
+  };
+}
+
+function isJsonObject(value) {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function sha256(value) {

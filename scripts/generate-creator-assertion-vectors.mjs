@@ -40,6 +40,7 @@ const PROFILE = {
 const SELLING_AGENT_URL = 'https://sales.novacreators.example/mcp';
 const BRAND_JSON_URL = 'https://novacreators.example/.well-known/brand.json';
 const JWKS_URL = 'https://novacreators.example/.well-known/jwks.json';
+const EVALUATION_TIME = '2026-08-06T12:00:00Z';
 const OTHER_JWKS_URL = 'https://novacreators.example/.well-known/jwks-sales.json';
 const CREDENTIAL_ID = 'ca_kitchen_lab_0001';
 const STATUS_URL = `https://novacreators.example/.well-known/adcp/status/${CREDENTIAL_ID}`;
@@ -180,12 +181,15 @@ function presentationFor(credential, subject) {
   };
 }
 
-function verified(networkRequests, anchor) {
+// After a status check the result is reusable until the status's next_update, which is earlier than expires_at here.
+function verified(networkRequests, anchor, { statusChecked = true } = {}) {
   return {
     outcome: 'verified',
     network_requests: networkRequests,
     action_binding: { action_type: PROFILE.action_type, action_id: SELLING_AGENT_URL },
     anchor,
+    valid_until: statusChecked ? STATUS_PAYLOAD.next_update : CREDENTIAL_PAYLOAD.expires_at,
+    ...(statusChecked && { revocation_checked_at: EVALUATION_TIME }),
   };
 }
 
@@ -500,6 +504,15 @@ const definitions = [
     expected: { outcome: 'invalid', network_requests: 2 },
   },
   {
+    name: 'expires-at-before-issued-at',
+    description: 'expires_at is before issued_at. The credential is invalid, not expired.',
+    mutateCredentialPayload(payload) {
+      payload.issued_at = '2026-08-06T11:00:00Z';
+      payload.expires_at = '2026-08-06T10:00:00Z';
+    },
+    expected: { outcome: 'invalid', network_requests: 2 },
+  },
+  {
     name: 'issued-at-in-the-future',
     description: 'issued_at is more than 60 seconds after the evaluation time.',
     mutateCredentialPayload(payload) { payload.issued_at = '2026-08-06T12:05:00Z'; },
@@ -543,7 +556,7 @@ const definitions = [
     name: 'credential-without-status-url',
     description: 'The credential carries no status_url, so the evaluator makes no status request.',
     omitStatusUrl: true,
-    expected: verified(2, 'absent'),
+    expected: verified(2, 'absent', { statusChecked: false }),
   },
   {
     name: 'anchor-not-evaluated-for-revoked-credential',
@@ -601,7 +614,7 @@ function buildCase(definition) {
 const fixture = {
   $comment: 'AdCP 3.3 creator sales-authorization profile. All entities, credentials, and endpoints are fictional, and the signing key is a public test key.',
   version: '3.3',
-  evaluation_time: '2026-08-06T12:00:00Z',
+  evaluation_time: EVALUATION_TIME,
   profile: PROFILE,
   profile_address_prefixes: PROFILE_ADDRESS_PREFIXES,
   cases: definitions.map(buildCase),

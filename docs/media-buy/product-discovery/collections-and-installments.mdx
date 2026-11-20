@@ -362,7 +362,8 @@ goes in `attestations[]` on the same property or collection, with the
 [creator sales-authorization profile](/docs/building/by-layer/L1/security#creator-sales-authorization-profile-3-3-experimental).
 The credential adds four things to the bare record. It is signed with the
 operator's key. It expires. It can carry a status address, which lets a buyer
-check a stored copy for revocation.
+check a stored copy for revocation. Without a status address, a buyer SHOULD
+read the credential fresh from the selling agent before relying on it.
 It can carry a creator anchor, a line of text in the account's public profile
 that the buyer reads for itself. A verified
 credential without a confirmed anchor is still operator-attested, and buyers
